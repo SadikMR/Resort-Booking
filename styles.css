@@ -22,13 +22,17 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-x: clip;
+}
+
 body {
   margin: 0;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   color: var(--text);
   background: var(--bg);
   line-height: 1.5;
-  padding-top: 64px;
+  padding-top: calc(64px + env(safe-area-inset-top, 0));
 }
 
 img {
@@ -58,6 +62,16 @@ a {
   }
 
   .site-header .container {
+    width: calc(100% - 0.6rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: calc(100% - 0.9rem);
+  }
+
+  .site-header .container {
     width: calc(100% - 0.5rem);
   }
 }
@@ -79,6 +93,10 @@ a {
   align-items: start;
 }
 
+.content-main {
+  min-width: 0;
+}
+
 .right-rail {
   display: flex;
   flex-direction: column;
@@ -98,6 +116,7 @@ a {
   right: 0;
   z-index: 20;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: env(safe-area-inset-top, 0);
 }
 
 .header-row {
@@ -105,6 +124,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.35rem;
 }
 
 .header-left,
@@ -137,6 +157,7 @@ a {
   text-decoration: none;
   color: #fff;
   gap: 0.8rem; /* Slightly increased gap for better visual balance with the icon */
+  min-width: 0;
 }
 
 /* Replaces .brand-main since we are using an image now */
@@ -229,7 +250,7 @@ h1 {
   font-family: "Playfair Display", serif;
   /* Use a lighter weight (500) for that elegant luxury feel */
   font-weight: 300; 
-  
+  font-size: clamp(1.4rem, 5vw, 2.2rem);
   letter-spacing: -0.01em;
   color: #363535;
 }
@@ -239,10 +260,10 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.75rem;
+  gap: clamp(0.4rem, 2vw, 0.75rem);
   font-family: "Inter", sans-serif;
   font-weight: 500;
-  font-size: 0.88rem;
+  font-size: clamp(0.65rem, 2vw, 0.88rem);
   color: #1a1a1a;
 }
 
@@ -291,9 +312,9 @@ h1 {
 .gallery {
   display: grid;
   grid-template-columns: 2.35fr 1.15fr;
-  gap: 0.3rem;
-  min-height: 420px;
-  margin-bottom: 1.5rem;
+  gap: clamp(0.2rem, 2vw, 0.3rem);
+  min-height: clamp(240px, 60vw, 420px);
+  margin-bottom: clamp(0.8rem, 3vw, 1.5rem);
 }
 
 .hero-image {
@@ -347,21 +368,22 @@ h1 {
 .booking-card {
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-radius: clamp(6px, 2vw, var(--radius));
 }
 
 .booking-card-header {
   background: var(--surface);
   color: var(--text);
-  padding: 1.2rem 1.25rem 0.6rem;
+  padding: clamp(0.8rem, 2vw, 1.2rem) clamp(1rem, 3vw, 1.25rem) clamp(0.4rem, 1.5vw, 0.6rem);
   font-family: "Playfair Display", Georgia, serif;
-  font-size: 1.4rem;
+  font-size: clamp(1rem, 3vw, 1.4rem);
   font-weight: 700;
   text-align: center;
   margin: 0;
 }
 
 .booking-card-body {
-  padding: 1.25rem;
+  padding: clamp(0.8rem, 2vw, 1.25rem);
 }
 
 .rail-spacer {
@@ -372,59 +394,60 @@ h1 {
 .date-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-  margin-bottom: 0.9rem;
+  gap: clamp(0.3rem, 2vw, 0.5rem);
+  margin-bottom: clamp(0.6rem, 2vw, 0.9rem);
 }
 
 .date-field {
   border: 1px solid var(--line);
   border-radius: 6px;
-  padding: 0.7rem 0.75rem;
+  padding: clamp(0.5rem, 2vw, 0.7rem) clamp(0.6rem, 2vw, 0.75rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  font-size: clamp(0.8rem, 2vw, 0.95rem);
 }
 
 .date-field span {
-  font-size: 0.95rem;
   font-weight: 600;
   color: var(--text);
 }
 
 .date-field i {
-  font-size: 0.7rem;
+  font-size: clamp(0.5rem, 1vw, 0.7rem);
   color: #aaa;
 }
 
 .available {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: clamp(0.3rem, 1vw, 0.4rem);
   background: #f0faf0;
   border: 1px solid #9cd49c;
   border-radius: 6px;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.78rem;
+  padding: clamp(0.4rem, 1.5vw, 0.5rem) clamp(0.6rem, 2vw, 0.75rem);
+  font-size: clamp(0.7rem, 1.5vw, 0.78rem);
   color: #2a7a2a;
   font-weight: 600;
-  margin-bottom: 0.9rem;
+  margin-bottom: clamp(0.6rem, 2vw, 0.9rem);
 }
 
 .available i {
   color: #2a7a2a;
+  flex-shrink: 0;
 }
 
 .price-rows {
-  margin-bottom: 1rem;
+  margin-bottom: clamp(0.8rem, 2vw, 1rem);
 }
 
 .price-row {
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem 0;
+  padding: clamp(0.35rem, 1.5vw, 0.5rem) 0;
   border-bottom: 1px solid var(--line);
-  font-size: 0.85rem;
+  font-size: clamp(0.75rem, 2vw, 0.85rem);
 }
 
 .price-row:last-child {
@@ -433,7 +456,7 @@ h1 {
 
 .price-row.total {
   font-weight: 700;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
   color: var(--text);
 }
 
@@ -453,14 +476,16 @@ h1 {
   text-decoration: none;
   font-weight: 700;
   border: 0;
-  padding: 0.8rem 1.2rem;
+  padding: clamp(0.6rem, 2vw, 0.8rem) clamp(0.9rem, 3vw, 1.2rem);
+  font-size: clamp(0.75rem, 2.5vw, 1rem);
+  transition: all 0.2s ease;
 }
 
 .btn-primary {
   width: 100%;
   background: var(--accent);
   color: #fff;
-  margin-bottom: 0.75rem;
+  margin-bottom: clamp(0.5rem, 2vw, 0.75rem);
   transition: background 0.2s;
 }
 
@@ -470,31 +495,31 @@ h1 {
 
 .btn-small {
   width: auto;
-  padding: 0.6rem 1rem;
+  padding: clamp(0.5rem, 1.5vw, 0.6rem) clamp(0.8rem, 2vw, 1rem);
 }
 
 .redirect-note {
   color: #aaa;
-  font-size: 0.75rem;
+  font-size: clamp(0.65rem, 1.5vw, 0.75rem);
   text-align: center;
-  margin: 0 0 0.9rem;
+  margin: 0 0 clamp(0.6rem, 2vw, 0.9rem);
 }
 
 .booking-brand {
   color: #003580;
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
 }
 
 .booking-divider {
   border: none;
   border-top: 1px solid var(--line);
-  margin: 0 0 0.9rem;
+  margin: 0 0 clamp(0.6rem, 2vw, 0.9rem);
 }
 
 .aside-note {
-  margin: 0 0 0.9rem;
+  margin: 0 0 clamp(0.6rem, 2vw, 0.9rem);
   color: var(--text-tertiary);
-  font-size: 0.82rem;
+  font-size: clamp(0.75rem, 1.5vw, 0.82rem);
   text-align: center;
   line-height: 1.5;
 }
@@ -503,16 +528,17 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: clamp(0.3rem, 1vw, 0.5rem);
   border: 2px solid var(--brand);
   color: var(--brand);
   border-radius: 999px;
-  padding: 0.7rem;
-  font-size: 1.1rem;
+  padding: clamp(0.6rem, 2vw, 0.7rem);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
   font-weight: 700;
   text-decoration: none;
-  margin-bottom: 0.75rem;
+  margin-bottom: clamp(0.5rem, 2vw, 0.75rem);
   transition: background 0.2s, color 0.2s;
+  width: 100%;
 }
 
 .sidebar-phone:hover {
@@ -523,15 +549,15 @@ h1 {
 .hot-deal {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: clamp(0.3rem, 1vw, 0.4rem);
   background: #fff8e6;
   border: 1px solid #f5c842;
   border-radius: 6px;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.75rem;
+  padding: clamp(0.4rem, 1.5vw, 0.5rem) clamp(0.6rem, 2vw, 0.75rem);
+  font-size: clamp(0.7rem, 1.5vw, 0.75rem);
   color: #9a6f00;
   font-weight: 600;
-  margin-bottom: 0.75rem;
+  margin-bottom: clamp(0.5rem, 2vw, 0.75rem);
 }
 
 .hot-deal i {
@@ -561,28 +587,36 @@ h1 {
 .section-tabs {
   margin-top: 1rem;
   display: flex;
-  gap: 1.2rem;
+  gap: clamp(0.6rem, 3vw, 1.2rem);
   overflow-x: auto;
-  padding-bottom: 0.4rem;
+  overflow-y: hidden;
+  padding-bottom: clamp(0.25rem, 1vw, 0.4rem);
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
 .section-tabs a {
   text-decoration: none;
   font-weight: 600;
   white-space: nowrap;
+  font-size: clamp(0.7rem, 2vw, 0.9rem);
+  padding: clamp(0.3rem, 1vw, 0.5rem) clamp(0.4rem, 2vw, 0.8rem);
+  border-radius: 4px;
+  transition: background 0.2s ease;
 }
 
 .content-card {
   margin-block: 1rem;
-  padding: 1rem 1.1rem;
+  padding: clamp(0.7rem, 3vw, 1.1rem);
   background: #f8f8f8;
   border-color: #e4e4e4;
+  border-radius: clamp(8px, 2vw, var(--radius));
 }
 
 .content-card h2 {
   margin-top: 0;
-  margin-bottom: 0.8rem;
-  font-size: clamp(1.6rem, 2.6vw, 2rem);
+  margin-bottom: clamp(0.5rem, 2vw, 0.8rem);
+  font-size: clamp(1.3rem, 4vw, 2rem);
   font-weight: 700;
 }
 
@@ -603,14 +637,14 @@ h1 {
 .amenity-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.55rem;
+  gap: clamp(0.3rem, 2vw, 0.55rem);
 }
 
 .amenity-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.88rem;
+  gap: clamp(0.3rem, 2vw, 0.5rem);
+  font-size: clamp(0.7rem, 2vw, 0.88rem);
   color: #444;
 }
 
@@ -639,20 +673,20 @@ h1 {
   background: #f8f1e8;
   border: 1px solid #efe2d2;
   border-radius: var(--radius-sm);
-  padding: 1rem;
+  padding: clamp(0.6rem, 3vw, 1rem);
   display: flex;
-  gap: 0.85rem;
+  gap: clamp(0.5rem, 2vw, 0.85rem);
   align-items: flex-start;
 }
 
 .badge-icon {
   background: #ff9800;
   color: #fff;
-  font-size: 0.72rem;
+  font-size: clamp(0.6rem, 2vw, 0.72rem);
   font-weight: 700;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
+  width: clamp(28px, 8vw, 36px);
+  height: clamp(28px, 8vw, 36px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -694,7 +728,7 @@ h1 {
 .highlight-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: clamp(0.7rem, 2vw, 1rem);
 }
 
 .mini-card {
@@ -702,6 +736,12 @@ h1 {
   border-radius: var(--radius-sm);
   overflow: hidden;
   background: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mini-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .mini-card h3,
@@ -722,34 +762,36 @@ h1 {
 /* CTA Banner */
 .banner {
   border-radius: var(--radius);
-  padding: 2rem 2rem;
+  padding: clamp(1rem, 4vw, 2rem);
   background:
     linear-gradient(130deg, rgba(0, 33, 37, 0.7), rgba(0, 55, 60, 0.35)),
     url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80") center / cover no-repeat;
   color: #fff;
-  margin: 1rem auto 0;
+  margin: clamp(0.8rem, 3vw, 1rem) auto 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: clamp(0.8rem, 3vw, 1.5rem);
+  flex-wrap: wrap;
 }
 
 .banner-text {
   flex: 1;
+  min-width: 200px;
 }
 
 .banner h2 {
   max-width: 640px;
-  margin: 0 0 0.5rem;
+  margin: 0 0 clamp(0.25rem, 2vw, 0.5rem);
   font-family: "Playfair Display", Georgia, serif;
   font-weight: 500;
-  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  font-size: clamp(1.1rem, 4vw, 1.7rem);
   line-height: 1.2;
 }
 
 .banner-text p {
   margin: 0;
-  font-size: 0.85rem;
+  font-size: clamp(0.75rem, 2vw, 0.85rem);
   opacity: 0.9;
   max-width: 480px;
   line-height: 1.5;
@@ -770,7 +812,7 @@ h1 {
 .activity-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+  gap: clamp(0.8rem, 3vw, 1rem);
 }
 
 .activity-grid article {
@@ -780,26 +822,32 @@ h1 {
   border-radius: var(--radius-sm);
   overflow: hidden;
   background: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.activity-grid article:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .activity-grid img {
   width: 100%;
   height: 100%;
-  min-height: 150px;
+  min-height: clamp(120px, 25vw, 150px);
 }
 
 .activity-grid div {
-  padding: 0.8rem 1rem;
+  padding: clamp(0.6rem, 2vw, 0.8rem) clamp(0.7rem, 2vw, 1rem);
 }
 
 .activity-grid h3 {
-  margin: 0 0 0.35rem;
-  font-size: 1rem;
+  margin: 0 0 clamp(0.2rem, 1vw, 0.35rem);
+  font-size: clamp(0.85rem, 2vw, 1rem);
 }
 
 .activity-grid p {
   margin: 0;
-  font-size: 0.85rem;
+  font-size: clamp(0.75rem, 2vw, 0.85rem);
   color: #555;
   line-height: 1.55;
 }
@@ -834,27 +882,42 @@ h1 {
 .review-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: clamp(0.7rem, 2vw, 1rem);
 }
 
 .review-card {
   border: 1px solid #ebebeb;
   border-radius: var(--radius-sm);
-  padding: 1rem;
+  padding: clamp(0.7rem, 2vw, 1rem);
   background: #fff;
+  transition: transform 0.2s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-2px);
+}
+
+.review-card h3 {
+  font-size: clamp(0.8rem, 2vw, 1rem);
+}
+
+.review-card p {
+  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
 }
 
 .rating {
   margin: 0;
   color: #a87400;
   font-weight: 700;
+  font-size: clamp(0.85rem, 2vw, 1rem);
 }
 
 .see-all-link {
   display: block;
-  margin-top: 0.7rem;
+  margin-top: clamp(0.5rem, 2vw, 0.7rem);
   text-align: right;
   font-weight: 700;
+  font-size: clamp(0.8rem, 2vw, 1rem);
 }
 
 /* Carousel dots — hidden on desktop */
@@ -884,27 +947,33 @@ h1 {
 .policy-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: clamp(0.7rem, 2vw, 1rem);
 }
 
 .policy-grid article {
   border: 1px solid #ececec;
   border-radius: 14px;
-  padding: 1rem;
+  padding: clamp(0.7rem, 2vw, 1rem);
   background: #fff;
+  transition: transform 0.2s ease;
+}
+
+.policy-grid article:hover {
+  transform: translateY(-2px);
 }
 
 .policy-grid h3 {
   margin: 0;
   display: flex;
   align-items: center;
-  gap: 0.45rem;
-  font-size: 1rem;
+  gap: clamp(0.3rem, 1vw, 0.45rem);
+  font-size: clamp(0.85rem, 2vw, 1rem);
 }
 
 .policy-grid p {
-  margin: 0.3rem 0 0;
+  margin: clamp(0.2rem, 1vw, 0.3rem) 0 0;
   color: #666;
+  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
 }
 
 details {
@@ -918,7 +987,8 @@ summary {
   cursor: pointer;
   font-weight: 700;
   position: relative;
-  padding-right: 1.5rem;
+  padding-right: clamp(1rem, 3vw, 1.5rem);
+  font-size: clamp(0.85rem, 2vw, 1rem);
 }
 
 summary::-webkit-details-marker {
@@ -931,7 +1001,7 @@ summary::after {
   right: 0;
   top: 0;
   color: #2f2f2f;
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2vw, 1.2rem);
   line-height: 1;
 }
 
@@ -939,15 +1009,19 @@ details[open] summary::after {
   content: "-";
 }
 
+details {
+  padding: clamp(0.7rem, 2vw, 0.95rem) clamp(0.2rem, 1vw, 0.35rem);
+}
+
 .location-grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
-  gap: 1rem;
+  gap: clamp(0.7rem, 2vw, 1rem);
 }
 
 .location-map-frame {
   width: 100%;
-  min-height: 280px;
+  min-height: clamp(200px, 50vw, 280px);
   border: 0;
   border-radius: var(--radius-sm);
 }
@@ -955,24 +1029,24 @@ details[open] summary::after {
 .location-desc {
   margin-top: 0.8rem;
   color: #666;
-  font-size: 0.9rem;
+  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
   line-height: 1.6;
 }
 
 .transport-card {
   border: 1px solid #ececec;
   border-radius: var(--radius-sm);
-  padding: 1rem;
+  padding: clamp(0.7rem, 2vw, 1rem);
   background: #fff;
 }
 
 .airport-card {
   border: 1px solid #ebebeb;
   border-radius: 10px;
-  padding: 0.8rem;
+  padding: clamp(0.6rem, 1.5vw, 0.8rem);
   display: flex;
   justify-content: space-between;
-  margin: 0.6rem 0;
+  margin: clamp(0.4rem, 1vw, 0.6rem) 0;
 }
 
 .nearby-layout {
@@ -985,7 +1059,7 @@ details[open] summary::after {
 .nearby-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: clamp(0.7rem, 2vw, 1rem);
 }
 
 .nearby-card {
@@ -993,12 +1067,19 @@ details[open] summary::after {
   border-radius: var(--radius-sm);
   overflow: hidden;
   background: #fff;
-  padding-bottom: 1rem;
+  padding-bottom: clamp(0.7rem, 2vw, 1rem);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nearby-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 .nearby-card img {
   aspect-ratio: 16 / 9;
+  object-fit: cover;
 }
 
 .nearby-card h3,
@@ -1044,31 +1125,35 @@ details[open] summary::after {
   text-align: center;
   font-family: "Playfair Display", Georgia, "Times New Roman", serif;
   font-weight: 500;
-  font-size: 2.85rem;
+  font-size: clamp(1.8rem, 5vw, 2.85rem);
 }
 
 .subscribe-form {
   display: flex;
   justify-content: center;
-  gap: 0.8rem;
-  margin-bottom: 0.65rem;
+  gap: clamp(0.6rem, 2vw, 0.8rem);
+  margin-bottom: clamp(0.4rem, 2vw, 0.65rem);
+  flex-wrap: wrap;
 }
 
 .subscribe-form input {
   width: min(460px, 70vw);
   border-radius: 999px;
   border: 1px solid #9ecbd8;
-  padding: 0.72rem 0.95rem;
+  padding: clamp(0.6rem, 2vw, 0.72rem) clamp(0.7rem, 2vw, 0.95rem);
   font: inherit;
+  font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
 .subscribe-form button {
   border: 1px solid #8fb8ca;
   border-radius: 999px;
-  padding: 0.72rem 1rem;
+  padding: clamp(0.6rem, 2vw, 0.72rem) clamp(0.8rem, 2vw, 1rem);
   font-weight: 700;
   color: #fff;
   background: rgba(15, 106, 137, 0.7);
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  transition: background 0.2s ease;
 }
 
 .footer-note {
@@ -1210,7 +1295,6 @@ details[open] summary::after {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .highlight-cards,
   .policy-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -1239,14 +1323,6 @@ details[open] summary::after {
     min-height: 240px;
   }
 
-  .activity-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .activity-grid article {
-    grid-template-columns: 1fr;
-  }
-
   .highlight-feature {
     grid-template-columns: 1fr;
   }
@@ -1262,7 +1338,11 @@ details[open] summary::after {
     grid-template-columns: 1fr;
   }
 
-  /* Mobile carousel - highlight cards */
+  .see-all-link {
+    text-align: center;
+  }
+
+  /* Horizontal carousels: ~one card + peek of next (tablet & mobile) */
   .highlight-cards {
     display: flex;
     overflow-x: auto;
@@ -1271,6 +1351,7 @@ details[open] summary::after {
     gap: 0.75rem;
     padding-bottom: 0.25rem;
     scrollbar-width: none;
+    overscroll-behavior-x: contain;
   }
 
   .highlight-cards::-webkit-scrollbar {
@@ -1279,14 +1360,36 @@ details[open] summary::after {
 
   .highlight-cards .mini-card {
     flex: 0 0 85%;
+    min-width: 0;
     scroll-snap-align: start;
+    align-self: flex-start;
+    overflow: visible;
+  }
+
+  .highlight-cards .mini-card img {
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  }
+
+  .highlight-cards .mini-card h3,
+  .highlight-cards .mini-card p {
+    overflow-wrap: anywhere;
+    word-wrap: break-word;
+  }
+
+  .highlight-cards .mini-card h3 {
+    line-height: 1.3;
+  }
+
+  .highlight-cards .mini-card p {
+    margin: 0;
+    padding-bottom: 0.85rem;
+    line-height: 1.55;
   }
 
   .highlight-dots {
     display: flex;
   }
 
-  /* Mobile carousel - activity grid */
   .activity-grid {
     display: flex;
     overflow-x: auto;
@@ -1295,6 +1398,7 @@ details[open] summary::after {
     gap: 0.75rem;
     padding-bottom: 0.25rem;
     scrollbar-width: none;
+    overscroll-behavior-x: contain;
   }
 
   .activity-grid::-webkit-scrollbar {
@@ -1303,16 +1407,29 @@ details[open] summary::after {
 
   .activity-grid article {
     flex: 0 0 85%;
+    min-width: 0;
     scroll-snap-align: start;
     grid-template-columns: 1fr;
+    align-self: flex-start;
+    overflow: visible;
+  }
+
+  .activity-grid article img {
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  }
+
+  .activity-grid article h3,
+  .activity-grid article p {
+    overflow-wrap: anywhere;
+    word-wrap: break-word;
+  }
+
+  .activity-grid article div {
+    padding-bottom: 0.25rem;
   }
 
   .activity-dots {
     display: flex;
-  }
-
-  .see-all-link {
-    text-align: center;
   }
 }
 
@@ -1320,7 +1437,7 @@ details[open] summary::after {
 @media (max-width: 768px) {
   body {
     font-size: 15px;
-    padding-top: 56px;
+    padding-top: calc(56px + env(safe-area-inset-top, 0));
   }
 
   .container {
@@ -1336,12 +1453,22 @@ details[open] summary::after {
     gap: 0.4rem;
   }
 
+  .header-left,
+  .header-right {
+    flex-shrink: 0;
+  }
+
   .header-left {
     gap: 0.6rem;
   }
 
   .header-right {
     gap: 0.6rem;
+  }
+
+  .brand {
+    flex: 1;
+    justify-content: center;
   }
 
   .brand-logo {
@@ -1383,6 +1510,10 @@ details[open] summary::after {
     font-size: 0.75rem;
   }
 
+  .meta-row span {
+    white-space: normal;
+  }
+
   .meta-row span:not(:last-child)::after {
     display: none;
   }
@@ -1391,8 +1522,13 @@ details[open] summary::after {
     min-height: 240px;
   }
 
+  .gallery {
+    min-height: 0;
+  }
+
+  /* Mobile: hero aerial only — thumbnails hidden */
   .thumb-grid {
-    display: none;
+    display: none !important;
   }
 
   .image-button {
@@ -1433,12 +1569,28 @@ details[open] summary::after {
     padding-bottom: 0.3rem;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    scroll-padding-inline: 0.25rem;
   }
 
   .section-tabs a {
     font-size: 0.75rem;
     padding-bottom: 0.3rem;
     white-space: nowrap;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .reviews-meta {
+    margin-top: 0;
+  }
+
+  /* Highlights: after the full-width feature card, carousel = one mini-card + peek of next (same as ≤1120px) */
+  .activity-grid article {
+    flex: 0 0 min(86%, calc(100% - 2.25rem));
   }
 
   .date-row {
@@ -1523,6 +1675,8 @@ details[open] summary::after {
   .banner {
     padding: 1.2rem;
     gap: 0.8rem;
+    align-items: stretch;
+    text-align: left;
   }
 
   .banner h2 {
@@ -1533,11 +1687,12 @@ details[open] summary::after {
   .btn-light {
     padding-inline: 1rem;
     font-size: 0.9rem;
-  }
-
-  .activity-grid {
-    grid-template-columns: 1fr;
-    gap: 0.8rem;
+    align-self: stretch;
+    justify-content: center;
+    white-space: normal;
+    width: auto;
+    max-width: 100%;
+    text-align: center;
   }
 
   .review-grid {
@@ -1606,22 +1761,58 @@ details[open] summary::after {
   }
 
   .footer-columns {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.25rem;
+  }
+
+  .footer-columns > div:not(.footer-brand) {
+    width: 100%;
+    max-width: 22rem;
+    margin-inline: auto;
+  }
+
+  .footer-columns > div:not(.footer-brand) h3,
+  .footer-columns > div:not(.footer-brand) ul {
+    text-align: center;
+  }
+
+  .footer-columns > div:not(.footer-brand) ul {
+    margin-inline: auto;
+  }
+
+  .footer-brand {
+    width: 100%;
+    max-width: 22rem;
+    margin-inline: auto;
+    text-align: center;
+    justify-items: center;
   }
 
   .footer-bottom {
     flex-direction: column;
     gap: 0.8rem;
     text-align: center;
+    align-items: stretch;
+  }
+
+  .footer-bottom p {
+    margin: 0;
+    align-self: center;
+  }
+
+  .footer-hotline {
+    margin-inline: auto;
   }
 }
 
 /* Small mobile phones (max 480px) */
 @media (max-width: 480px) {
   body {
-    font-size: 14px;
-    padding-top: 52px;
+    font-size: clamp(13px, 2vw, 14px);
+    padding-top: calc(52px + env(safe-area-inset-top, 0));
   }
 
   .container {
@@ -1635,6 +1826,11 @@ details[open] summary::after {
   .header-row {
     min-height: 52px;
     gap: 0.3rem;
+  }
+
+  .brand {
+    flex: 1;
+    justify-content: center;
   }
 
   .brand-logo {
@@ -1682,6 +1878,10 @@ details[open] summary::after {
     font-size: 0.6rem;
   }
 
+  .meta-row span {
+    white-space: normal;
+  }
+
   .gallery {
     grid-template-columns: 1fr;
     min-height: auto;
@@ -1693,13 +1893,7 @@ details[open] summary::after {
   }
 
   .thumb-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.15rem;
-  }
-
-  .thumb-grid img {
-    min-height: 70px;
-    border-radius: 4px;
+    display: none !important;
   }
 
   .image-button {
@@ -1917,7 +2111,10 @@ details[open] summary::after {
   .btn-light {
     font-size: 0.8rem;
     padding-inline: 0.7rem;
-    width: 100% !important;
+    width: auto;
+    max-width: 100%;
+    align-self: stretch;
+    justify-content: center;
   }
 
   .activity-grid {
@@ -1925,7 +2122,6 @@ details[open] summary::after {
   }
 
   .activity-grid article {
-    flex: 0 0 85%;
     border-radius: 6px;
     grid-template-columns: 1fr !important;
   }
@@ -2057,11 +2253,6 @@ details[open] summary::after {
     font-size: 0.8rem;
   }
 
-  .footer-columns {
-    grid-template-columns: 1fr !important;
-    gap: 0.8rem;
-  }
-
   .footer-columns h3 {
     font-size: 0.8rem;
   }
@@ -2070,9 +2261,123 @@ details[open] summary::after {
     flex-direction: column;
     gap: 0.5rem;
     text-align: center;
+    align-items: stretch;
   }
 
   .footer-bottom p {
     font-size: 0.65rem;
+    margin: 0;
+    align-self: center;
+  }
+}
+
+/* Extra small devices (max 360px) */
+@media (max-width: 360px) {
+  .container {
+    width: calc(100% - 0.7rem);
+  }
+
+  .site-header .container {
+    width: calc(100% - 0.35rem);
+  }
+
+  body {
+    font-size: 12px;
+    padding-top: calc(48px + env(safe-area-inset-top, 0));
+  }
+
+  .header-row {
+    min-height: 48px;
+  }
+
+  .brand-logo {
+    height: 28px;
+  }
+
+  .menu-dot {
+    width: 24px;
+    height: 24px;
+    font-size: 0.6rem;
+  }
+
+  h1 {
+    font-size: 1.05rem;
+    margin: 0.4rem 0;
+  }
+
+  .meta-row {
+    gap: 0.25rem 0.4rem;
+    font-size: 0.55rem;
+  }
+
+  .content-card {
+    padding: 0.6rem;
+    margin-block: 0.6rem;
+  }
+
+  .content-card h2 {
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .section-tabs a {
+    font-size: 0.6rem;
+    padding: 0.2rem 0.3rem;
+  }
+
+  .btn {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.7rem;
+  }
+
+  .amenity-grid {
+    gap: 0.25rem;
+  }
+
+  .amenity-item {
+    font-size: 0.65rem;
+  }
+
+  .badge {
+    padding: 0.5rem;
+    gap: 0.4rem;
+  }
+
+  .badge-icon {
+    width: 24px;
+    height: 24px;
+    font-size: 0.5rem;
+  }
+
+  .policy-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .activity-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .nearby-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .mini-card h3 {
+    font-size: 0.75rem;
+  }
+
+  .banner h2 {
+    font-size: 0.9rem;
+  }
+
+  .footer-inner h2 {
+    font-size: 1.1rem;
+  }
+
+  .subscribe-form input,
+  .subscribe-form button {
+    font-size: 0.9rem;
   }
 }
