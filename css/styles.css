@@ -401,22 +401,146 @@ h1 {
 .date-field {
   border: 1px solid var(--line);
   border-radius: 6px;
-  padding: clamp(0.5rem, 2vw, 0.7rem) clamp(0.6rem, 2vw, 0.75rem);
+  padding: clamp(0.45rem, 2vw, 0.65rem) clamp(0.6rem, 2vw, 0.75rem);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.08rem;
   cursor: pointer;
   font-size: clamp(0.8rem, 2vw, 0.95rem);
 }
 
-.date-field span {
+.date-field-caption {
+  font-size: clamp(0.62rem, 1.8vw, 0.72rem);
+  font-weight: 600;
+  color: var(--text-tertiary);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.date-field-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem;
+}
+
+.date-field-main {
+  flex: 1;
+  min-width: 0;
   font-weight: 600;
   color: var(--text);
 }
 
-.date-field i {
+.date-field:is(button) {
+  width: 100%;
+  appearance: none;
+  background: var(--surface);
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  text-align: left;
+}
+
+.date-field:is(button):focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.date-field .date-field-row i {
   font-size: clamp(0.5rem, 1vw, 0.7rem);
   color: #aaa;
+}
+
+.booking-datepicker-panel {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+body.booking-stay-dates-modal-open {
+  overflow: hidden;
+}
+
+.booking-stay-dates-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.75rem, 3vw, 1.25rem);
+  box-sizing: border-box;
+}
+
+.booking-stay-dates-modal[hidden] {
+  display: none !important;
+}
+
+.booking-stay-dates-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 25, 25, 0.45);
+  cursor: pointer;
+}
+
+.booking-stay-dates-modal-panel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 520px);
+  max-height: min(92vh, 640px);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  overflow: auto;
+}
+
+.booking-stay-dates-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: clamp(0.65rem, 2vw, 0.85rem) clamp(0.75rem, 2vw, 1rem);
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+
+.booking-stay-dates-modal-title {
+  margin: 0;
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  font-weight: 700;
+  font-family: "Playfair Display", Georgia, serif;
+}
+
+.booking-stay-dates-modal-dismiss {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--text-tertiary);
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 0.15rem 0.35rem;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.booking-stay-dates-modal-dismiss:hover {
+  color: var(--text);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.booking-stay-dates-modal-dismiss:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/* Hotel Datepicker root is appended inside the modal panel */
+.booking-stay-dates-modal-panel .datepicker {
+  position: relative !important;
+  border: none;
+  box-shadow: none;
 }
 
 .available {
@@ -466,6 +590,14 @@ h1 {
 
 .price-value {
   font-weight: 600;
+}
+
+.booking-night-count-detail {
+  display: inline;
+  margin-left: 0.25rem;
+  font-weight: 600;
+  font-size: 0.88em;
+  color: var(--text-tertiary);
 }
 
 .btn {

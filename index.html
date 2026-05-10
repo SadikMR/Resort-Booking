@@ -17,7 +17,16 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="stylesheet" href="./css/hotel-datepicker.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "fecha": "./scripts/hotel-datepicker/fecha.js",
+        "hotel-datepicker": "./scripts/hotel-datepicker/hotel-datepicker.js"
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -426,30 +435,44 @@
       </div>
       <!-- Booking sidebar (sticky on desktop) -->
       <aside class="right-rail" aria-label="Booking sidebar">
-        <section class="booking-card" aria-label="Check villa availability">
+        <section class="booking-card" aria-label="Check villa availability" data-booking-nightly-price-usd="600">
           <h2 class="booking-card-header">Check Villa Availability</h2>
           <div class="booking-card-body">
-            <div class="date-row">
-              <div class="date-field">
-                <span>Jun 26</span>
-                <i class="bi bi-chevron-down"></i>
-              </div>
-              <div class="date-field">
-                <span>Jun 29</span>
-                <i class="bi bi-chevron-down"></i>
-              </div>
+            <label class="sr-only" for="booking-stay-dates-input">Check-in and check-out dates</label>
+            <input id="booking-stay-dates-input" class="booking-stay-dates-input sr-only" type="text" readonly tabindex="-1"
+              autocomplete="off" aria-hidden="true" />
+            <div class="date-row" role="group" aria-label="Stay dates">
+              <button type="button" class="date-field" data-booking-calendar-trigger="check-in"
+                aria-haspopup="dialog" aria-expanded="false" aria-controls="booking-stay-dates-modal-panel">
+                <span class="date-field-caption">Check-in</span>
+                <span class="date-field-row">
+                  <span id="booking-check-in-summary" class="date-field-main">Select</span>
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </span>
+              </button>
+              <button type="button" class="date-field" data-booking-calendar-trigger="check-out"
+                aria-haspopup="dialog" aria-expanded="false" aria-controls="booking-stay-dates-modal-panel">
+                <span class="date-field-caption">Check-out</span>
+                <span class="date-field-row">
+                  <span id="booking-check-out-summary" class="date-field-main">Select</span>
+                  <i class="bi bi-chevron-down" aria-hidden="true"></i>
+                </span>
+              </button>
             </div>
             <div class="available">
               <i class="bi bi-check-circle-fill"></i> Dates selected are available
             </div>
             <div class="price-rows">
               <div class="price-row">
-                <span class="price-label">Price Per Night</span>
-                <span class="price-value">USD $600</span>
+                <span class="price-label">Price per night</span>
+                <span id="booking-nightly-price-value" class="price-value">USD $600</span>
               </div>
               <div class="price-row total">
-                <span class="price-label">Total Price</span>
-                <span class="price-value">USD $600</span>
+                <span class="price-label">
+                  Total
+                  <span id="booking-night-count-detail" class="booking-night-count-detail" aria-live="polite"></span>
+                </span>
+                <span id="booking-total-price-value" class="price-value">—</span>
               </div>
             </div>
             <a class="btn btn-primary" href="#">Check Availability</a>
@@ -598,8 +621,20 @@
     </div>
   </footer>
 
-  <script src="./scripts/highlights-carousel.js"></script>
-  <script src="./scripts/activities-carousel.js"></script>
+  <div id="booking-stay-dates-modal" class="booking-stay-dates-modal" hidden aria-hidden="true">
+    <div class="booking-stay-dates-modal-backdrop" tabindex="-1" aria-hidden="true"></div>
+    <div id="booking-stay-dates-modal-panel" class="booking-stay-dates-modal-panel booking-datepicker-panel"
+      role="dialog" aria-modal="true" aria-labelledby="booking-stay-dates-modal-title" tabindex="-1">
+      <div class="booking-stay-dates-modal-header">
+        <h3 id="booking-stay-dates-modal-title" class="booking-stay-dates-modal-title">Select stay dates</h3>
+        <button type="button" class="booking-stay-dates-modal-dismiss" aria-label="Close calendar">&times;</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./scripts/booking/booking-datepicker.js"></script>
+  <script src="./scripts/carousel/highlights-carousel.js"></script>
+  <script src="./scripts/carousel/activities-carousel.js"></script>
 </body>
 
 </html>
