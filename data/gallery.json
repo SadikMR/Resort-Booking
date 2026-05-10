@@ -1,0 +1,54 @@
+{
+    "images": [
+        {
+            "id": 1,
+            "src": "/images/resort-aerial.jpg",
+            "alt": "Main resort beachfront view"
+        },
+        {
+            "id": 2,
+            "src": "/images/resort-pool.jpg",
+            "alt": "Resort courtyard and pool area"
+        },
+        {
+            "id": 3,
+            "src": "/images/resort-suite.jpg",
+            "alt": "Resort suite accommodation"
+        },
+        {
+            "id": 4,
+            "src": "/images/pool-lounge.jpeg",
+            "alt": "Pool and tropical lounge area"
+        },
+        {
+            "id": 5,
+            "src": "/images/hightlight-private-pool.jpg",
+            "alt": "Private pool highlight"
+        },
+        {
+            "id": 6,
+            "src": "/images/beach.jpg",
+            "alt": "Resort beach view"
+        },
+        {
+            "id": 7,
+            "src": "/images/highlight-spa.jpg",
+            "alt": "Spa and wellness highlight"
+        },
+        {
+            "id": 8,
+            "src": "/images/resort-restaurant.jpg",
+            "alt": "Resort restaurant dining"
+        },
+        {
+            "id": 9,
+            "src": "/images/lounge-resort-interior.jpg",
+            "alt": "Luxury resort interior lounge"
+        },
+        {
+            "id": 10,
+            "src": "/images/highlight-dining.jpg",
+            "alt": "Highlight dining experience"
+        }
+    ]
+}
