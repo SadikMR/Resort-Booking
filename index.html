@@ -127,7 +127,7 @@
                 Rediscover Sanctuary Cap Cana, the Dominican Republic's most exclusive adults-only all-inclusive
                 resort.
               </p>
-              <p>
+              <p class="about-short">
                 You'll be delighted by the resorts $45 million modernization as you explore spectacular
                 suites, artfully crafted lobbies, updated restaurants and bars,
                 enhanced world-class spa and state-of-the-art fitness center. Sanctuary Cap Cana,
@@ -135,7 +135,30 @@
                 private gated community retreat inside Punta Cana. Cap Cana is made up of
                 30,000 acres of flawless beaches...
               </p>
-              <a class="more-link" href="#">Show more</a>
+              <div class="about-full" hidden>
+                <p>
+                  You'll be delighted by the resorts $45 million modernization as you explore spectacular
+                  suites, artfully crafted lobbies, updated restaurants and bars,
+                  enhanced world-class spa and state-of-the-art fitness center. Sanctuary Cap Cana,
+                  A Luxury Collection Adult All-Inclusive Resort is located in Cap Cana, a
+                  private gated community retreat inside Punta Cana. Cap Cana is made up of
+                  30,000 acres of flawless beaches, lush tropical gardens, and world-renowned golf courses
+                  designed by Jack Nicklaus and Punta Espada.
+                </p>
+                <p>
+                  With 12 gourmet restaurants and 6 bars, including an overwater lounge and swim-up bar,
+                  the culinary experience is nothing short of extraordinary. Guests can indulge in cuisines
+                  ranging from authentic Dominican flavors to Mediterranean, Asian fusion, and contemporary
+                  French fine dining — all included in your stay.
+                </p>
+                <p>
+                  The resort features seven sparkling pools, three rejuvenating whirlpools, a PADI-certified
+                  dive center, and a full-service marina. Whether you prefer lounging on the pristine white-sand
+                  beach, exploring vibrant coral reefs, or enjoying a round of golf overlooking the Caribbean Sea,
+                  Sanctuary Cap Cana offers an unparalleled luxury escape for discerning adult travelers.
+                </p>
+              </div>
+              <button type="button" class="more-link" id="about-toggle">Show more</button>
             </div>
             <div>
               <h3>Room-Specific Amenities</h3>
@@ -150,7 +173,15 @@
                 <span class="amenity-item"><i class="bi bi-person-walking"></i> Personal Fitness Equipment</span>
                 <span class="amenity-item"><i class="bi bi-car-front"></i> Private BMW transfer</span>
               </div>
-              <a class="more-link" href="#">Show more</a>
+              <div class="amenity-grid amenity-grid-extra" hidden>
+                <span class="amenity-item"><i class="bi bi-wifi"></i> High-speed Wi-Fi</span>
+                <span class="amenity-item"><i class="bi bi-tv"></i> Flat-screen Smart TV</span>
+                <span class="amenity-item"><i class="bi bi-snow2"></i> Climate control AC</span>
+                <span class="amenity-item"><i class="bi bi-safe"></i> In-room safe</span>
+                <span class="amenity-item"><i class="bi bi-telephone"></i> Direct-dial telephone</span>
+                <span class="amenity-item"><i class="bi bi-droplet"></i> Rainfall shower</span>
+              </div>
+              <button type="button" class="more-link" id="amenity-toggle">Show more</button>
             </div>
           </div>
           <article class="badge">
@@ -635,6 +666,7 @@
   <script type="module" src="./scripts/booking/booking-datepicker.js"></script>
   <script src="./scripts/carousel/highlights-carousel.js"></script>
   <script src="./scripts/carousel/activities-carousel.js"></script>
+  <script src="./scripts/about-toggle.js"></script>
 </body>
 
 </html>
