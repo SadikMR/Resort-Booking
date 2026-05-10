@@ -525,8 +525,20 @@
 
     <!-- Nearby Resorts -->
     <section class="content-card container">
-      <h2>Other All-Inclusive Resorts You May Like Nearby</h2>
-      <p class="section-subtitle">Condimentum cursus commodo lorem non mi turpis semper dictum</p>
+      <div class="nearby-header">
+        <div>
+          <h2>Other All-Inclusive Resorts You May Like Nearby</h2>
+          <p class="section-subtitle">Condimentum cursus commodo lorem non mi turpis semper dictum</p>
+        </div>
+        <div class="nearby-sort">
+          <label for="resort-sort" class="sort-label">Sort by</label>
+          <select id="resort-sort" class="sort-select">
+            <option value="popular" selected>Most Popular</option>
+            <option value="price-high">Highest Price</option>
+            <option value="price-low">Lowest Price</option>
+          </select>
+        </div>
+      </div>
       <div class="nearby-layout">
         <div class="nearby-grid">
           <article class="nearby-card">
@@ -686,6 +698,7 @@
   <script src="./scripts/carousel/activities-carousel.js"></script>
   <script src="./scripts/about-toggle.js"></script>
   <script src="./scripts/nearby-favorites.js"></script>
+  <script src="./scripts/nearby-sort.js"></script>
 </body>
 
 </html>
