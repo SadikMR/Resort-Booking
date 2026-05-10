@@ -30,7 +30,7 @@
 .datepicker__month-day--valid {
   cursor: pointer;
   -webkit-user-select: none;
-          user-select: none;
+  user-select: none;
 }
 
 .datepicker__month-day--lastMonth,
@@ -55,7 +55,7 @@
 
 .datepicker__buttons {
   -webkit-user-select: none;
-          user-select: none;
+  user-select: none;
 }
 
 .datepicker__close-button,
@@ -191,7 +191,8 @@
   color: #fff;
 }
 
-.datepicker__month-day--selected:after, .datepicker__month-day--selected:before {
+.datepicker__month-day--selected:after,
+.datepicker__month-day--selected:before {
   display: none;
 }
 
@@ -301,9 +302,9 @@
   text-transform: uppercase;
 }
 
-.datepicker--topbar-top .datepicker__close-button, .datepicker--topbar-top
-.datepicker__clear-button, .datepicker--topbar-top
-.datepicker__submit-button {
+.datepicker--topbar-top .datepicker__close-button,
+.datepicker--topbar-top .datepicker__clear-button,
+.datepicker--topbar-top .datepicker__submit-button {
   margin-top: 0;
 }
 
@@ -314,7 +315,8 @@
   color: #ffffff;
 }
 
-.datepicker__close-button:disabled, .datepicker__close-button[disabled],
+.datepicker__close-button:disabled,
+.datepicker__close-button[disabled],
 .datepicker__clear-button:disabled,
 .datepicker__clear-button[disabled],
 .datepicker__submit-button:disabled,
@@ -324,11 +326,11 @@
   cursor: not-allowed;
 }
 
-.datepicker__clear-button + .datepicker__close-button {
+.datepicker__clear-button+.datepicker__close-button {
   margin-left: 10px;
 }
 
-.datepicker__clear-button + .datepicker__submit-button {
+.datepicker__clear-button+.datepicker__submit-button {
   margin-left: 10px;
 }
 
@@ -357,7 +359,7 @@
 
 @media (min-width: 320px) {
   .datepicker {
-    width: 300px;
+    width: 350px;
   }
 }
 
@@ -365,25 +367,32 @@
   .datepicker {
     width: 460px;
   }
+
   .datepicker__months {
     overflow: hidden;
   }
+
   .datepicker__month {
     width: 200px;
   }
+
   .datepicker__month--month1 {
     float: left;
   }
+
   .datepicker__month--month2 {
     display: table;
     float: right;
   }
+
   .datepicker__month-button--disabled {
     visibility: hidden;
   }
+
   .datepicker__months {
     position: relative;
   }
+
   .datepicker__months:before {
     background: #dcdcdc;
     bottom: 0;
@@ -398,16 +407,26 @@
 
 @media (min-width: 768px) {
   .datepicker {
-    width: 560px;
+    width: 650px;
+    max-width: calc(100vw - 2rem);
   }
+
+  .datepicker__months {
+    display: flex;
+    width: 100%;
+  }
+
   .datepicker__month {
     width: 240px;
+    flex: 1;
   }
+
   .datepicker--topbar-has-close-button .datepicker__info,
   .datepicker--topbar-has-clear-button .datepicker__info,
   .datepicker--topbar-has-submit-button .datepicker__info {
     max-width: 325px;
   }
+
   .datepicker__buttons {
     margin-top: 0;
     position: absolute;

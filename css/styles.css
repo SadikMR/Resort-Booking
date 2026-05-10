@@ -156,21 +156,25 @@ a {
   align-items: center;
   text-decoration: none;
   color: #fff;
-  gap: 0.8rem; /* Slightly increased gap for better visual balance with the icon */
+  gap: 0.8rem;
+  /* Slightly increased gap for better visual balance with the icon */
   min-width: 0;
 }
 
 /* Replaces .brand-main since we are using an image now */
 .brand-logo {
   /* clamp(min, preferred, max) */
-  height: clamp(40px, 8vh, 60px); 
+  height: clamp(40px, 8vh, 60px);
   width: auto;
   display: block;
-  transition: height 0.3s ease; /* Smooth scaling if the window is resized */
+  transition: height 0.3s ease;
+  /* Smooth scaling if the window is resized */
 }
+
 .brand-divider {
   width: 1px;
-  height: 30px; /* Increased slightly to match the height of the new logo */
+  height: 30px;
+  /* Increased slightly to match the height of the new logo */
   background: rgba(255, 255, 255, 0.5);
 }
 
@@ -180,7 +184,8 @@ a {
   line-height: 1.2;
   opacity: 0.9;
   white-space: nowrap;
-  text-transform: uppercase; /* Ensures the sub-text keeps that premium look */
+  text-transform: uppercase;
+  /* Ensures the sub-text keeps that premium look */
 }
 
 .nav-list {
@@ -249,7 +254,7 @@ h1 {
   margin: 1rem 0;
   font-family: "Playfair Display", serif;
   /* Use a lighter weight (500) for that elegant luxury feel */
-  font-weight: 300; 
+  font-weight: 300;
   font-size: clamp(1.4rem, 5vw, 2.2rem);
   letter-spacing: -0.01em;
   color: #363535;
@@ -487,7 +492,7 @@ body.booking-stay-dates-modal-open {
 .booking-stay-dates-modal-panel {
   position: relative;
   z-index: 1;
-  width: min(100%, 520px);
+  width: min(100%, 650px);
   max-height: min(92vh, 640px);
   margin: 0;
   display: flex;
@@ -1900,18 +1905,18 @@ details {
     gap: 1.25rem;
   }
 
-  .footer-columns > div:not(.footer-brand) {
+  .footer-columns>div:not(.footer-brand) {
     width: 100%;
     max-width: 22rem;
     margin-inline: auto;
   }
 
-  .footer-columns > div:not(.footer-brand) h3,
-  .footer-columns > div:not(.footer-brand) ul {
+  .footer-columns>div:not(.footer-brand) h3,
+  .footer-columns>div:not(.footer-brand) ul {
     text-align: center;
   }
 
-  .footer-columns > div:not(.footer-brand) ul {
+  .footer-columns>div:not(.footer-brand) ul {
     margin-inline: auto;
   }
 
