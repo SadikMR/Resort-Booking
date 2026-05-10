@@ -1,16 +1,29 @@
 # Sanctuary Cap Cana — Property Detail Page
 
-A responsive, semantic, and SEO-friendly property detail webpage for the **Sanctuary Cap Cana — A Luxury Collection Adult All-Inclusive Resort**, built using raw **HTML** and **CSS** only (no JavaScript frameworks).
+A responsive, semantic, and SEO-friendly property detail webpage for the **Sanctuary Cap Cana — A Luxury Collection Adult All-Inclusive Resort**, built using raw **HTML**, **CSS**, and **vanilla JavaScript** modules (no JavaScript frameworks).
 
 ---
 
 ## 📁 Project Structure
 
 ```
-assignment-1-sadik/
-├── index.html      # Main HTML page (semantic, accessible markup)
-├── styles.css      # All styling (variables, layout, components, responsive)
-└── README.md       # Project documentation (this file)
+Resort-Booking/
+├── index.html
+├── css/
+│   ├── styles.css              # Site layout, tokens, components, responsive
+│   └── hotel-datepicker.css    # Date range picker UI (Hotel Datepicker)
+├── icons/
+├── scripts/
+│   ├── booking/
+│   │   └── booking-datepicker.js
+│   ├── carousel/
+│   │   ├── highlights-carousel.js
+│   │   └── activities-carousel.js
+│   └── hotel-datepicker/
+│       ├── fecha.js            # Dependency for date formatting
+│       └── hotel-datepicker.js # Datepicker library build (adapted copy)
+├── images/
+└── README.md
 ```
 
 ---
@@ -24,8 +37,9 @@ assignment-1-sadik/
 | **Google Fonts**   | Inter (body) + Playfair Display (headings)   |
 | **Bootstrap Icons** | Icon library via CDN                        |
 | **OpenStreetMap**  | Embedded interactive maps (iframe)           |
+| **Fecha / Hotel Datepicker** | Adapted bundles in `scripts/hotel-datepicker/` for the booking sidebar |
 
-> No JavaScript, no CSS frameworks (Tailwind/Bootstrap), no build tools. Pure HTML + CSS.
+> No CSS frameworks (Tailwind/Bootstrap) and no app build pipeline: static HTML/CSS/JS with an import map.
 
 ---
 
@@ -139,7 +153,7 @@ The page is fully responsive with three breakpoints using a **desktop-first** ap
 - ✅ **Descriptive class names** (BEM-inspired: `.content-card`, `.booking-card`, `.activity-grid`)
 
 ### CSS Best Practices
-- ✅ **External CSS** — single stylesheet (`styles.css`)
+- ✅ **External CSS** — core styles (`css/styles.css`) plus picker styles (`css/hotel-datepicker.css`)
 - ✅ **Classes only** — no `#id` selectors for styling
 - ✅ **CSS Variables** — all theme colors, spacing, and radii in `:root`
 - ✅ **DRY** — reusable variables replace repeated values (`--radius-sm`, `--card-border`, `--text-secondary`)

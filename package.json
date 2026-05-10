@@ -1,0 +1,25 @@
+{
+  "name": "resort-booking",
+  "version": "1.0.0",
+  "description": "A responsive, semantic, and SEO-friendly property detail webpage for the **Sanctuary Cap Cana — A Luxury Collection Adult All-Inclusive Resort**, built using raw **HTML** and **CSS** only (no JavaScript frameworks).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SadikMR/Resort-Booking.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/SadikMR/Resort-Booking/issues"
+  },
+  "homepage": "https://github.com/SadikMR/Resort-Booking#readme",
+  "devDependencies": {
+    "fecha": "^4.2.3",
+    "hotel-datepicker": "^4.12.4"
+  }
+}
