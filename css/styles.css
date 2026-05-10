@@ -1236,11 +1236,45 @@ details {
   padding-bottom: clamp(0.7rem, 2vw, 1rem);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
 }
 
 .nearby-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.nearby-card-favorite {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.2s ease;
+  color: #ccc;
+  font-size: 1.2rem;
+}
+
+.nearby-card-favorite:hover {
+  background: #fff;
+  color: #ff6b6b;
+  transform: scale(1.1);
+}
+
+.nearby-card-favorite[aria-pressed="true"] {
+  color: #ff6b6b;
+}
+
+.nearby-card-favorite[aria-pressed="true"] i {
+  fill: #ff6b6b;
 }
 
 .nearby-card img {
