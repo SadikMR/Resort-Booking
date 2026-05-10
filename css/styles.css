@@ -796,6 +796,20 @@ body.booking-stay-dates-modal-open {
 .more-link {
   font-weight: 700;
   color: var(--brand);
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline;
+  transition: color 0.2s;
+}
+
+.more-link:hover {
+  color: #004e55;
+  text-decoration: underline;
 }
 
 .about-desc p {
@@ -803,6 +817,21 @@ body.booking-stay-dates-modal-open {
   color: #444;
   line-height: 1.7;
   margin-bottom: 0.75rem;
+}
+
+.about-full,
+.amenity-grid-extra {
+  animation: aboutFadeIn 0.3s ease;
+}
+
+.about-full[hidden],
+.amenity-grid-extra[hidden] {
+  display: none;
+}
+
+@keyframes aboutFadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .badge {
@@ -1193,6 +1222,54 @@ details {
   align-items: start;
 }
 
+.nearby-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.nearby-sort {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  white-space: nowrap;
+}
+
+.sort-label {
+  font-weight: 600;
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  color: var(--text);
+}
+
+.sort-select {
+  padding: clamp(0.5rem, 1.5vw, 0.65rem) clamp(0.6rem, 2vw, 0.8rem);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23333' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  padding-right: 2rem;
+}
+
+.sort-select:hover {
+  border-color: var(--brand);
+}
+
+.sort-select:focus {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(0, 54, 58, 0.1);
+}
+
 .nearby-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1207,11 +1284,45 @@ details {
   padding-bottom: clamp(0.7rem, 2vw, 1rem);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
 }
 
 .nearby-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.nearby-card-favorite {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.2s ease;
+  color: #ccc;
+  font-size: 1.2rem;
+}
+
+.nearby-card-favorite:hover {
+  background: #fff;
+  color: #ff6b6b;
+  transform: scale(1.1);
+}
+
+.nearby-card-favorite[aria-pressed="true"] {
+  color: #ff6b6b;
+}
+
+.nearby-card-favorite[aria-pressed="true"] i {
+  fill: #ff6b6b;
 }
 
 .nearby-card img {
@@ -1450,6 +1561,12 @@ details {
 
   .nearby-map iframe {
     min-height: 340px;
+  }
+
+  .nearby-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
   }
 
   .location-grid {
