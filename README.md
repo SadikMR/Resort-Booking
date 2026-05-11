@@ -33,9 +33,11 @@ Resort-Booking/
 │   │   ├── hotel-datepicker/
 │   │   │   ├── fecha.js
 │   │   │   └── hotel-datepicker.js
+│   │   ├── nearby-resort/
+│   │   │   ├── properties.js    # Fetch & render nearby properties
+│   │   │   ├── favorites.js     # Favorite heart icon functionality
+│   │   │   └── sort.js          # Resort sorting (client-side reference)
 │   │   ├── gallery-modal.js    # Gallery viewer modal
-│   │   ├── nearby-favorites.js # Favorite heart icons
-│   │   ├── nearby-sort.js      # Resort sorting
 │   │   └── about-toggle.js
 │   ├── icons/                  # Icon assets
 │   └── images/                 # Image assets

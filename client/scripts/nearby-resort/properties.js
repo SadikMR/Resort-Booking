@@ -7,11 +7,24 @@
  * - Defaults to "Most Popular" on page load
  * - Updates grid when sort option changes
  * - Uses image service for property images
+ * - Integrates with favorites management (via favorites.js)
  */
 
 (function () {
   const IMAGE_SERVICE_URL = 'https://beta.imgservice.rentbyowner.com/640x300/';
   const API_BASE = '/api/get-property';
+
+  // ===== Initialization Check =====
+  // Ensure favorites module is loaded
+  function waitForFavoritesModule(callback, attempts = 0) {
+    if (window.NearbyFavorites) {
+      callback();
+    } else if (attempts < 10) {
+      setTimeout(() => waitForFavoritesModule(callback, attempts + 1), 50);
+    } else {
+      console.error('Favorites module failed to load');
+    }
+  }
 
   // Detect viewport size and return limit
   function getResponsiveLimit() {
@@ -23,12 +36,13 @@
     const imageUrl = `${IMAGE_SERVICE_URL}${property.featureImage}`;
     const locationParts = property.location.split(',');
     const displayLocation = locationParts.slice(-2).join(' >').trim();
+    const favState = window.NearbyFavorites.getInitialButtonState(property.id);
 
     return `
-      <article class="nearby-card">
+      <article class="nearby-card" data-property-id="${property.id}">
         <img src="${imageUrl}" alt="${property.name}" onerror="this.src='./images/nearby-resort-placeholder.jpg'" />
-        <button type="button" class="nearby-card-favorite" aria-label="Add to favorites" aria-pressed="false">
-          <i class="bi bi-heart"></i>
+        <button type="button" class="nearby-card-favorite" aria-label="${favState.ariaLabel}" aria-pressed="${favState.ariaPressed}">
+          <i class="${favState.iconClass}"></i>
         </button>
         <h3>${property.name}</h3>
         <p>${displayLocation}</p>
@@ -60,9 +74,18 @@
   function handleFavoriteClick(e) {
     e.preventDefault();
     const btn = this;
-    const isPressed = btn.getAttribute('aria-pressed') === 'true';
-    btn.setAttribute('aria-pressed', !isPressed);
-    btn.classList.toggle('active');
+    const card = btn.closest('.nearby-card');
+    const propertyId = card.dataset.propertyId;
+
+    // Toggle favorite in localStorage (via favorites module)
+    window.NearbyFavorites.toggleFavorite(propertyId);
+
+    // Update button state
+    window.NearbyFavorites.updateFavoriteButton(btn);
+
+    // Re-sort the entire grid to move favorites to top
+    const currentSort = document.getElementById('resort-sort').value;
+    fetchProperties(currentSort);
   }
 
   // Fetch properties from API
@@ -113,10 +136,12 @@
     });
   }
 
-  // Run when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  // Wait for favorites module, then initialize
+  waitForFavoritesModule(() => {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  });
 })();
