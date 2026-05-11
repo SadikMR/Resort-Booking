@@ -1,6 +1,17 @@
 # Sanctuary Cap Cana — Property Detail Page
 
-A responsive, semantic, and SEO-friendly property detail webpage for the **Sanctuary Cap Cana — A Luxury Collection Adult All-Inclusive Resort**, built using raw **HTML**, **CSS**, and **vanilla JavaScript** modules (no JavaScript frameworks).
+A responsive, semantic, and SEO-friendly property detail webpage for the **Sanctuary Cap Cana — A Luxury Collection Adult All-Inclusive Resort**, built using **Express.js** backend with **HTML**, **CSS**, and **vanilla JavaScript** (no frameworks).
+
+---
+
+## 📋 Table of Contents
+
+- [Project Structure](#-project-structure)
+- [Features](#-features)
+- [Technologies](#-technologies)
+- [Installation](#-installation)
+- [Running the Project](#-running-the-project)
+- [API Endpoints](#-api-endpoints)
 
 ---
 
@@ -8,46 +19,171 @@ A responsive, semantic, and SEO-friendly property detail webpage for the **Sanct
 
 ```
 Resort-Booking/
-├── index.html
-├── css/
-│   ├── styles.css              # Site layout, tokens, components, responsive
-│   └── hotel-datepicker.css    # Date range picker UI (Hotel Datepicker)
-├── icons/
-├── scripts/
-│   ├── booking/
-│   │   └── booking-datepicker.js
-│   ├── carousel/
-│   │   ├── highlights-carousel.js
-│   │   └── activities-carousel.js
-│   └── hotel-datepicker/
-│       ├── fecha.js            # Dependency for date formatting
-│       └── hotel-datepicker.js # Datepicker library build (adapted copy)
-├── images/
-└── README.md
+├── client/                      # Frontend (static files & scripts)
+│   ├── index.html              # Main HTML file
+│   ├── css/
+│   │   ├── styles.css          # Site layout, components, responsive
+│   │   └── hotel-datepicker.css # Date picker UI styling
+│   ├── scripts/
+│   │   ├── booking/
+│   │   │   └── booking-datepicker.js
+│   │   ├── carousel/
+│   │   │   ├── highlights-carousel.js
+│   │   │   └── activities-carousel.js
+│   │   ├── hotel-datepicker/
+│   │   │   ├── fecha.js
+│   │   │   └── hotel-datepicker.js
+│   │   ├── gallery-modal.js    # Gallery viewer modal
+│   │   ├── nearby-favorites.js # Favorite heart icons
+│   │   ├── nearby-sort.js      # Resort sorting
+│   │   └── about-toggle.js
+│   ├── icons/                  # Icon assets
+│   └── images/                 # Image assets
+│
+├── server/                      # Backend (Express.js)
+│   ├── server.js               # Main server file
+│   ├── routes/
+│   │   └── imageRoutes.js      # Image API endpoints
+│   ├── controllers/
+│   │   └── imageController.js  # Image business logic
+│   └── data/
+│       └── gallery.json        # Gallery image data
+│
+├── package.json                # Dependencies & scripts
+├── README.md                   # This file
+└── .gitignore
 ```
 
 ---
 
-## 🛠️ Technologies Used
+## ✨ Features
 
-| Technology         | Purpose                                      |
-| ------------------ | -------------------------------------------- |
-| **HTML5**          | Semantic page structure                      |
-| **CSS3**           | Styling, layout (Flexbox & Grid), animations |
-| **Google Fonts**   | Inter (body) + Playfair Display (headings)   |
-| **Bootstrap Icons** | Icon library via CDN                        |
-| **OpenStreetMap**  | Embedded interactive maps (iframe)           |
-| **Fecha / Hotel Datepicker** | Adapted bundles in `scripts/hotel-datepicker/` for the booking sidebar |
+### Booking System
+- **Date Range Picker**: Dual-month calendar with validation
+- **Real-time Pricing**: Calculates total cost based on selected dates
+- **Responsive Design**: Works on mobile, tablet, desktop
 
-> No CSS frameworks (Tailwind/Bootstrap) and no app build pipeline: static HTML/CSS/JS with an import map.
+### Gallery Modal
+- **View All Images**: Modal displaying 10 resort images
+- **Desktop**: Vertical scrolling through gallery
+- **Mobile**: Horizontal scrolling with prev/next buttons
+- **Touch Gestures**: Swipe left/right to navigate
+- **Image Counter**: Shows current position (X / 10) on mobile
+
+### Resort Nearby
+- **Favorite Hearts**: Toggle favorite icon on resort cards
+- **Sort Options**: Sort by Most Popular, Highest Price, Lowest Price
+
+### General
+- **Responsive Layout**: Mobile, tablet, desktop breakpoints
+- **Semantic HTML**: SEO-friendly markup
+- **Accessibility**: ARIA labels, keyboard navigation
+- **No Frameworks**: Pure HTML, CSS, and vanilla JavaScript
 
 ---
 
-## 📐 Page Sections
+## 🛠️ Technologies
 
-The page is structured as a **two-column layout** (content + sticky booking sidebar) with the following sections:
+| Technology | Purpose |
+|-----------|---------|
+| **Node.js** | JavaScript runtime |
+| **Express.js** | Web server & routing |
+| **HTML5** | Semantic page structure |
+| **CSS3** | Styling, layout, animations |
+| **JavaScript** | Interactivity & DOM manipulation |
+| **Bootstrap Icons** | Icon library (CDN) |
+| **Google Fonts** | Inter + Playfair Display fonts |
 
-| # | Section                | Description                                                        |
+---
+
+## 📦 Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/SadikMR/Resort-Booking.git
+   cd Resort-Booking
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Install development tools** (optional, for auto-reload):
+   ```bash
+   npm install -D nodemon
+   ```
+
+---
+
+## 🚀 Running the Project
+
+### Development Mode (with auto-reload)
+```bash
+npm run dev
+```
+Server runs on `http://localhost:5000`
+
+### Production Mode
+```bash
+npm start
+```
+Server runs on `http://localhost:5000`
+
+### Access the App
+- Open your browser and go to: **http://localhost:5000**
+- All static files (HTML, CSS, images) are served from the `client` folder
+- API requests are handled by the Express server
+
+---
+
+## � API Endpoints
+
+### Get All Images
+**Request:**
+```
+GET /api/images
+```
+
+**Response:**
+```json
+{
+  "images": [
+    {
+      "id": 1,
+      "src": "/images/resort-aerial.jpg",
+      "alt": "Main resort beachfront view"
+    },
+    ...
+  ]
+}
+```
+
+---
+
+## 📱 Responsive Breakpoints
+
+- **Mobile**: ≤ 480px
+- **Tablet**: 481px - 768px
+- **Desktop**: ≥ 769px
+
+---
+
+## 🎨 Design Patterns
+
+- **Flexbox Layout**: Two-column content + sticky sidebar
+- **CSS Variables**: Theme colors and spacing tokens
+- **Mobile-first**: Mobile styles first, then desktop enhancements
+- **Touch-friendly**: Large buttons and gesture support
+
+---
+
+## 📝 Git Branches
+
+- **main**: Production-ready code
+- **feature/booking-date-selection**: Booking system features
+- **feature/gallery**: Gallery modal system
+
 |---|------------------------|--------------------------------------------------------------------|
 | 1 | **Header**             | Fixed top bar with logo, navigation, phone, and search             |
 | 2 | **Breadcrumbs**        | Semantic `<nav>` + `<ol>` navigation trail                        |
