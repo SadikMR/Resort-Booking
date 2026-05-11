@@ -76,11 +76,16 @@
     }
 
     // Open gallery modal
+    let savedScrollY = 0;
     function openGallery() {
         renderGalleryImages();
         currentImageIndex = 0;
         modal.removeAttribute('hidden');
         modal.setAttribute('aria-hidden', 'false');
+
+        // Lock background scroll while preserving position
+        savedScrollY = window.scrollY;
+        document.body.style.top = `-${savedScrollY}px`;
         document.body.classList.add('gallery-modal-open');
 
         if (isMobile) {
@@ -95,6 +100,8 @@
         modal.setAttribute('hidden', '');
         modal.setAttribute('aria-hidden', 'true');
         document.body.classList.remove('gallery-modal-open');
+        document.body.style.top = '';
+        window.scrollTo(0, savedScrollY);
     }
 
     // Desktop: Scroll vertically to image
