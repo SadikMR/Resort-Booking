@@ -7,45 +7,28 @@
  * - Defaults to "Most Popular" on page load
  * - Updates grid when sort option changes
  * - Uses image service for property images
- * - Favorites persisted in localStorage
- * - Favorites always shown first within each sort category
+ * - Integrates with favorites management (via favorites.js)
  */
 
 (function () {
   const IMAGE_SERVICE_URL = 'https://beta.imgservice.rentbyowner.com/640x300/';
   const API_BASE = '/api/get-property';
-  const FAVORITES_KEY = 'nearbyFavorites';
+
+  // ===== Initialization Check =====
+  // Ensure favorites module is loaded
+  function waitForFavoritesModule(callback, attempts = 0) {
+    if (window.NearbyFavorites) {
+      callback();
+    } else if (attempts < 10) {
+      setTimeout(() => waitForFavoritesModule(callback, attempts + 1), 50);
+    } else {
+      console.error('Favorites module failed to load');
+    }
+  }
 
   // Detect viewport size and return limit
   function getResponsiveLimit() {
     return window.innerWidth >= 1024 ? 6 : 4;
-  }
-
-  // ===== LocalStorage Helpers =====
-  function getFavoriteIds() {
-    const stored = localStorage.getItem(FAVORITES_KEY);
-    return stored ? JSON.parse(stored) : [];
-  }
-
-  function saveFavoriteIds(ids) {
-    localStorage.setItem(FAVORITES_KEY, JSON.stringify(ids));
-  }
-
-  function isFavorite(propertyId) {
-    return getFavoriteIds().includes(propertyId);
-  }
-
-  function toggleFavorite(propertyId) {
-    const favorites = getFavoriteIds();
-    const index = favorites.indexOf(propertyId);
-
-    if (index > -1) {
-      favorites.splice(index, 1);
-    } else {
-      favorites.push(propertyId);
-    }
-
-    saveFavoriteIds(favorites);
   }
 
   // Build property card HTML
@@ -53,15 +36,13 @@
     const imageUrl = `${IMAGE_SERVICE_URL}${property.featureImage}`;
     const locationParts = property.location.split(',');
     const displayLocation = locationParts.slice(-2).join(' >').trim();
-    const isFav = isFavorite(property.id);
-    const ariaPressed = isFav ? 'true' : 'false';
-    const ariaLabel = isFav ? 'Remove from favorites' : 'Add to favorites';
+    const favState = window.NearbyFavorites.getInitialButtonState(property.id);
 
     return `
       <article class="nearby-card" data-property-id="${property.id}">
         <img src="${imageUrl}" alt="${property.name}" onerror="this.src='./images/nearby-resort-placeholder.jpg'" />
-        <button type="button" class="nearby-card-favorite" aria-label="${ariaLabel}" aria-pressed="${ariaPressed}">
-          <i class="bi bi-heart${isFav ? '-fill' : ''}"></i>
+        <button type="button" class="nearby-card-favorite" aria-label="${favState.ariaLabel}" aria-pressed="${favState.ariaPressed}">
+          <i class="${favState.iconClass}"></i>
         </button>
         <h3>${property.name}</h3>
         <p>${displayLocation}</p>
@@ -96,18 +77,11 @@
     const card = btn.closest('.nearby-card');
     const propertyId = card.dataset.propertyId;
 
-    // Toggle favorite in localStorage
-    toggleFavorite(propertyId);
+    // Toggle favorite in localStorage (via favorites module)
+    window.NearbyFavorites.toggleFavorite(propertyId);
 
     // Update button state
-    const isFav = isFavorite(propertyId);
-    btn.setAttribute('aria-pressed', isFav);
-    btn.setAttribute('aria-label', isFav ? 'Remove from favorites' : 'Add to favorites');
-
-    // Update icon (filled or outline)
-    const icon = btn.querySelector('i');
-    icon.classList.toggle('bi-heart');
-    icon.classList.toggle('bi-heart-fill');
+    window.NearbyFavorites.updateFavoriteButton(btn);
 
     // Re-sort the entire grid to move favorites to top
     const currentSort = document.getElementById('resort-sort').value;
@@ -162,10 +136,12 @@
     });
   }
 
-  // Run when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  // Wait for favorites module, then initialize
+  waitForFavoritesModule(() => {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  });
 })();

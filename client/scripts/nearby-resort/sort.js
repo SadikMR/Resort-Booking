@@ -5,6 +5,11 @@
  * - Most Popular (default)
  * - Highest Price
  * - Lowest Price
+ * 
+ * NOTE: This module provides client-side sorting.
+ * The main sorting logic is now handled server-side via the API
+ * in properties.js. This file is kept for reference and can be used
+ * for local/client-side sorting if needed.
  */
 (function () {
   const sortSelect = document.getElementById('resort-sort');
