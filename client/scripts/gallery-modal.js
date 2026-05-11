@@ -215,6 +215,31 @@
     closeBtn.addEventListener('click', closeGallery);
     modalBackdrop.addEventListener('click', closeGallery);
 
+    // Sync counter with manual scrolling (touch swipe on mobile)
+    galleryContainer.addEventListener('scroll', () => {
+        if (!isMobile || modal.hasAttribute('hidden')) return;
+
+        const images = galleryContainer.querySelectorAll('.gallery-image-wrapper');
+        const containerWidth = galleryContainer.clientWidth;
+        const scrollLeft = galleryContainer.scrollLeft;
+
+        // Find which image is most visible
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+
+        images.forEach((img, index) => {
+            const imgLeft = img.offsetLeft;
+            const distance = Math.abs(scrollLeft - imgLeft);
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closestIndex = index;
+            }
+        });
+
+        currentImageIndex = closestIndex;
+        updateCounter();
+    });
+
     // Touch swipe on gallery container
     document.addEventListener('touchstart', function (e) {
         if (!modal.hasAttribute('hidden')) {
