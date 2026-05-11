@@ -16,7 +16,7 @@
 
     async function loadGalleryImages() {
         try {
-            const response = await fetch('./data/gallery.json');
+            const response = await fetch('/api/images');
             const data = await response.json();
             galleryImages = data.images;
             counterTotal.textContent = galleryImages.length;
