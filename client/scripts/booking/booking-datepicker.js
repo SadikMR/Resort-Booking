@@ -55,7 +55,7 @@ function initBookingStayDates() {
   const stayDatesInput = document.getElementById('booking-stay-dates-input');
   const bookingSection = stayDatesInput?.closest('[data-booking-nightly-price-usd]');
   const nightlyRateUsd =
-    bookingSection != null ? Number(bookingSection.dataset.bookingNightlyPriceUsd || 600) : 600;
+    bookingSection != null ? Number(bookingSection.dataset.bookingNightlyPriceUsd || 2026) : 600;
   const nightlyPriceEl = document.getElementById('booking-nightly-price-value');
   const totalPriceEl = document.getElementById('booking-total-price-value');
   const nightsDetailEl = document.getElementById('booking-night-count-detail');
@@ -146,7 +146,7 @@ function initBookingStayDates() {
     autoClose: false,
     preventContainerClose: true,
     i18n: {
-      submitButton: 'Apply dates',
+      submitButton: 'Submit',
     },
     setValue(value) {
       stayDatesInput.value = value;
