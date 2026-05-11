@@ -426,9 +426,7 @@
           <h2>Location</h2>
           <p class="section-subtitle">Condimentum cursus commodo lorem non mi turpis semper dictum</p>
           <div class="location-grid">
-            <iframe class="location-map-frame"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=-68.45%2C18.40%2C-68.28%2C18.55&layer=mapnik&marker=18.474%2C-68.365"
-              title="Map showing location of Sanctuary Cap Cana resort" loading="lazy"></iframe>
+            <div id="location-map" class="location-map-frame"></div>
             <article class="transport-card">
               <h3>Getting to the resort</h3>
               <p>Distance to nearest airports from Sanctuary Cap Cana</p>
@@ -525,9 +523,7 @@
           <!-- Properties will be dynamically loaded here by nearby-resort/properties.js -->
         </div>
         <div class="nearby-map">
-          <iframe
-            src="https://www.openstreetmap.org/export/embed.html?bbox=-68.55%2C18.35%2C-68.20%2C18.60&layer=mapnik&marker=18.474%2C-68.365"
-            title="Map showing nearby resort locations" loading="lazy"></iframe>
+          <div id="nearby-map" class="nearby-map-container"></div>
         </div>
       </div>
     </section>
@@ -640,6 +636,11 @@
   <script src="./scripts/nearby-resort/favorites.js"></script>
   <script src="./scripts/nearby-resort/properties.js"></script>
   <script src="./scripts/gallery-modal.js"></script>
+  <!-- Google Maps API -->
+  <script src="./scripts/maps/map-card-sync.js"></script>
+  <script src="./scripts/maps/location-map.js"></script>
+  <script src="./scripts/maps/nearby-map.js"></script>
+  <script src="./scripts/maps/google-maps-loader.js"></script>
 </body>
 
 </html>

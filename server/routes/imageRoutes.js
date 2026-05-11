@@ -4,6 +4,11 @@ const propertyController = require('../controllers/propertyController');
 
 const router = express.Router();
 
+// Google Maps API key endpoint
+router.get('/config/google-maps-key', (req, res) => {
+  res.json({ apiKey: process.env.GOOGLE_MAPS_API_KEY });
+});
+
 // GET all images
 router.get('/images', imageController.getAllImages);
 
