@@ -1618,10 +1618,11 @@ details {
 
 .nearby-card-favorite[aria-pressed="true"] {
   color: #ff6b6b;
+  background: rgba(255, 255, 255, 0.95);
 }
 
 .nearby-card-favorite[aria-pressed="true"] i {
-  fill: #ff6b6b;
+  color: #ff6b6b;
 }
 
 .nearby-card img {
