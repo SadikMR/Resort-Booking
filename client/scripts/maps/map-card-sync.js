@@ -43,18 +43,9 @@ const MapCardSync = (() => {
           'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
         );
       } else {
-        // Reset to default
-        const card = document.querySelector(
-          `.nearby-card[data-property-id="${propertyId}"]`
-        );
-        const isFirst =
-          card &&
-          card === document.querySelector('.nearby-card:first-child');
-
+        // Reset to default red
         marker.setIcon(
-          isFirst
-            ? 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
-            : 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+          'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
         );
       }
     },

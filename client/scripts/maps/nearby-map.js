@@ -52,17 +52,13 @@ async function initNearbyMap() {
 
           markerCount++;
           const position = { lat: parseFloat(property.lat), lng: parseFloat(property.lng) };
-          const isFirstProperty = index === 0;
-
           console.log(`Adding marker for ${property.name} at position:`, position);
 
           const marker = new google.maps.Marker({
             position: position,
             map: nearbyMap,
             title: property.name,
-            icon: isFirstProperty 
-              ? 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
-              : 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+            icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
           });
 
           bounds.extend(position);
