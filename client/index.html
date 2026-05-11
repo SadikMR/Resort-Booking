@@ -514,68 +514,15 @@
         <div class="nearby-sort">
           <label for="resort-sort" class="sort-label">Sort by</label>
           <select id="resort-sort" class="sort-select">
-            <option value="popular" selected>Most Popular</option>
-            <option value="price-high">Highest Price</option>
-            <option value="price-low">Lowest Price</option>
+            <option value="most-popular" selected>Most Popular</option>
+            <option value="highest-price">Highest Price</option>
+            <option value="lowest-price">Lowest Price</option>
           </select>
         </div>
       </div>
       <div class="nearby-layout">
         <div class="nearby-grid">
-          <article class="nearby-card">
-            <img src="./images/nearby-resort-1.jpg" alt="Nearby all-inclusive resort one" />
-            <button type="button" class="nearby-card-favorite" aria-label="Add to favorites" aria-pressed="false">
-              <i class="bi bi-heart"></i>
-            </button>
-            <h3>Hotel Name Goes Here</h3>
-            <p>Aruba &gt; Zona Hotelera</p>
-            <a class="btn btn-primary btn-small" href="#">View Availability</a>
-          </article>
-          <article class="nearby-card">
-            <img src="./images/nearby-resort-2.jpg" alt="Nearby all-inclusive resort two" />
-            <button type="button" class="nearby-card-favorite" aria-label="Add to favorites" aria-pressed="false">
-              <i class="bi bi-heart"></i>
-            </button>
-            <h3>Hotel Name Goes Here</h3>
-            <p>Aruba &gt; Zona Hotelera</p>
-            <a class="btn btn-primary btn-small" href="#">View Availability</a>
-          </article>
-          <article class="nearby-card">
-            <img src="./images/nearby-resort-3.jpg" alt="Nearby all-inclusive resort three" />
-            <button type="button" class="nearby-card-favorite" aria-label="Add to favorites" aria-pressed="false">
-              <i class="bi bi-heart"></i>
-            </button>
-            <h3>Hotel Name Goes Here</h3>
-            <p>Aruba &gt; Zona Hotelera</p>
-            <a class="btn btn-primary btn-small" href="#">View Availability</a>
-          </article>
-          <article class="nearby-card">
-            <img src="./images/nearby-resort-4.jpg" alt="Nearby all-inclusive resort four" />
-            <button type="button" class="nearby-card-favorite" aria-label="Add to favorites" aria-pressed="false">
-              <i class="bi bi-heart"></i>
-            </button>
-            <h3>Hotel Name Goes Here</h3>
-            <p>Aruba &gt; Zona Hotelera</p>
-            <a class="btn btn-primary btn-small" href="#">View Availability</a>
-          </article>
-          <article class="nearby-card">
-            <img src="./images/nearby-resort-5.jpg" alt="Nearby all-inclusive resort five" />
-            <button type="button" class="nearby-card-favorite" aria-label="Add to favorites" aria-pressed="false">
-              <i class="bi bi-heart"></i>
-            </button>
-            <h3>Hotel Name Goes Here</h3>
-            <p>Aruba &gt; Zona Hotelera</p>
-            <a class="btn btn-primary btn-small" href="#">View Availability</a>
-          </article>
-          <article class="nearby-card">
-            <img src="./images/nearby-resort-6.jpg" alt="Nearby all-inclusive resort six" />
-            <button type="button" class="nearby-card-favorite" aria-label="Add to favorites" aria-pressed="false">
-              <i class="bi bi-heart"></i>
-            </button>
-            <h3>Hotel Name Goes Here</h3>
-            <p>Aruba &gt; Zona Hotelera</p>
-            <a class="btn btn-primary btn-small" href="#">View Availability</a>
-          </article>
+          <!-- Properties will be dynamically loaded here by nearby-properties.js -->
         </div>
         <div class="nearby-map">
           <iframe
@@ -691,7 +638,7 @@
   <script src="./scripts/carousel/activities-carousel.js"></script>
   <script src="./scripts/about-toggle.js"></script>
   <script src="./scripts/nearby-favorites.js"></script>
-  <script src="./scripts/nearby-sort.js"></script>
+  <script src="./scripts/nearby-properties.js"></script>
   <script src="./scripts/gallery-modal.js"></script>
 </body>
 
