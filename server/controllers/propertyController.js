@@ -39,6 +39,8 @@ const getProperties = (req, res) => {
       reviews: item.Property?.Counts?.Reviews || 0,
       reviewScore: item.Property?.ReviewScore || 0,
       location: item.GeoInfo?.Display || 'Location',
+      lat: parseFloat(item.GeoInfo?.Lat) || 0,
+      lng: parseFloat(item.GeoInfo?.Lng) || 0,
       featureImage: item.Property?.FeatureImage || '',
       propertyType: item.Property?.PropertyType || 'Property',
       amenities: item.Property?.TopAmenities || [],

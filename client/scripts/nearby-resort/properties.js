@@ -60,6 +60,11 @@
 
     // Reinitialize favorite button functionality
     attachFavoriteHandlers();
+
+    // Attach map synchronization handlers
+    if (typeof MapCardSync !== 'undefined') {
+      MapCardSync.attachCardHoverListeners();
+    }
   }
 
   // Attach favorite button handlers
