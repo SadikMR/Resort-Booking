@@ -1,5 +1,5 @@
 /*! hotel-datepicker 4.12.4 - Copyright 2026 Benito Lopez (http://lopezb.com) - https://github.com/benitolopez/hotel-datepicker - MIT */
-import * as fecha from './date-formatter.js';
+import * as fecha from './fecha.js';
 
 let idCounter = 0;
 class HotelDatepicker {
