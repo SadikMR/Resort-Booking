@@ -1,5 +1,5 @@
 /*! hotel-datepicker 4.12.4 - Copyright 2026 Benito Lopez (http://lopezb.com) - https://github.com/benitolopez/hotel-datepicker - MIT */
-import * as fecha from 'fecha';
+import * as fecha from './fecha.js';
 
 let idCounter = 0;
 class HotelDatepicker {
@@ -41,7 +41,7 @@ class HotelDatepicker {
     this.clearButton = opts.clearButton || false;
     this.submitButton = Boolean(opts.submitButton);
     this.submitButtonName = this.submitButton && opts.submitButtonName ? opts.submitButtonName : "";
-    /** When false, omit the toolbar “Close/Cancel” control (modal may use backdrop only). Default true matches upstream. */
+    /** When false, omit the toolbar "Close/Cancel" control (modal may use backdrop only). Default true matches upstream. */
     this.topbarCloseButton =
       opts.topbarCloseButton !== undefined ? opts.topbarCloseButton : true;
     this.closeOnScroll = opts.closeOnScroll || false;

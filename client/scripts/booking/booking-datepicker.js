@@ -1,10 +1,10 @@
 /**
  * Stay dates modal (Hotel Datepicker) + sidebar totals from nightly rate.
- * Dependencies: scripts/hotel-datepicker/fecha.js, scripts/hotel-datepicker/hotel-datepicker.js
+ * Dependencies: ./fecha.js, ./hotel-datepicker.js (local imports)
  * Styles: css/hotel-datepicker.css (+ css/styles.css)
  */
-import * as fecha from 'fecha';
-import HotelDatepicker from 'hotel-datepicker';
+import * as fecha from './fecha.js';
+import HotelDatepicker from './hotel-datepicker.js';
 
 const STAY_DATE_SEPARATOR = ' - ';
 
