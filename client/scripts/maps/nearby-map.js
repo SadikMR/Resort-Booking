@@ -1,14 +1,24 @@
 // Nearby Resorts Map Initialization
 let nearbyMap;
 let resizeTimer;
+let currentSort = 'most-popular'; // Track current sort option
 
 // Detect viewport size and return limit (same as properties.js)
 function getResponsiveLimit() {
   return window.innerWidth >= 1024 ? 6 : 4;
 }
 
-async function initNearbyMap() {
+// Get current sort value from dropdown
+function getCurrentSort() {
+  const sortSelect = document.getElementById('resort-sort');
+  return sortSelect ? sortSelect.value : 'most-popular';
+}
+
+async function initNearbyMap(sort = null) {
   try {
+    // Use provided sort or get from dropdown
+    const sortValue = sort || getCurrentSort();
+    
     // Create map
     const mapElement = document.getElementById('nearby-map');
     if (!mapElement) {
@@ -31,7 +41,7 @@ async function initNearbyMap() {
     // Fetch nearby properties from API with responsive limit
     try {
       const limit = getResponsiveLimit();
-      const response = await fetch(`/get-property?sort=most-popular&limit=${limit}`);
+      const response = await fetch(`/get-property?sort=${sortValue}&limit=${limit}`);
       const data = await response.json();
       
       console.log(`Fetched ${limit} properties for map`);
@@ -112,6 +122,19 @@ async function initNearbyMap() {
   }
 }
 
+// Handle sort dropdown changes
+function setupSortListener() {
+  const sortSelect = document.getElementById('resort-sort');
+  if (sortSelect) {
+    sortSelect.addEventListener('change', function () {
+      currentSort = this.value;
+      console.log('Sort changed to:', currentSort);
+      MapCardSync.clearAll();
+      initNearbyMap(currentSort);
+    });
+  }
+}
+
 // Handle window resize to refresh map with responsive limit
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimer);
@@ -119,14 +142,18 @@ window.addEventListener('resize', () => {
     if (nearbyMap) {
       console.log('Window resized - reinitializing map with new responsive limit');
       MapCardSync.clearAll();
-      initNearbyMap();
+      initNearbyMap(currentSort);
     }
   }, 250);
 });
 
 // Initialize when DOM is ready
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initNearbyMap);
+  document.addEventListener('DOMContentLoaded', () => {
+    initNearbyMap();
+    setupSortListener();
+  });
 } else {
   initNearbyMap();
+  setupSortListener();
 }
