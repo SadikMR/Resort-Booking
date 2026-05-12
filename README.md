@@ -180,9 +180,9 @@ Resort-Booking/
     │   ├── gallery-modal.js        # Image gallery modal interactions
     │   │
     │   ├── 📂 booking/             # Booking & date picker functionality
-    │   │   ├── booking-datepicker.js   # Date picker initialization
-    │   │   ├── hotel-datepicker.js    # Date picker component
-    │   │   └── fecha.js               # Date formatting utility
+    │   │   ├── booking-handler.js      # Booking logic & date handling
+    │   │   ├── datepicker.js           # Date picker component library
+    │   │   └── date-formatter.js       # Date formatting utility
     │   │
     │   ├── 📂 carousel/            # Carousel components
     │   │   ├── highlights-carousel.js  # Resort highlights slider
@@ -325,7 +325,7 @@ DOM Manipulation & Rendering
 
 ### Key JavaScript Modules
 
-- **`hotel-datepicker/`** — Date range picker with calendar UI
+- **`booking/`** — Booking handler with date picker & stay date calculations
 - **`carousel/`** — Touch-friendly carousel implementation
 - **`maps/`** — Google Maps API integration
 - **`nearby-resort/`** — Property fetching & sorting logic
@@ -344,8 +344,8 @@ DOM Manipulation & Rendering
 | **Google Fonts** | Typography | Inter (body), Playfair Display (headings) |
 | **Bootstrap Icons** | Icon library | 1000+ icons via CDN |
 | **Google Maps API** | Location features | Property location & nearby map |
-| **Fecha.js** | Date formatting | Lightweight date utility |
-| **Hotel Datepicker** | Date picker UI | Adapted component for booking |
+| **date-formatter** | Date formatting | Lightweight date utility for formatting |
+| **datepicker** | Date picker UI | Calendar component for booking dates |
 
 ### Backend Technologies
 
