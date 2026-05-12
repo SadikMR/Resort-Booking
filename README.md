@@ -21,12 +21,6 @@ A full-stack luxury resort property showcase and booking platform featuring **Sa
 - [Technologies & Dependencies](#-technologies--dependencies)
 - [API Documentation](#-api-documentation)
 - [API Endpoints Summary](#-api-endpoints-summary)
-- [Data Structure](#-data-structure)
-- [Development Workflow](#-development-workflow)
-- [Design System](#-design-system)
-- [Browser Support](#-browser-support)
-- [Performance & SEO](#-performance--seo)
-- [Future Enhancements](#-future-enhancements)
 
 ---
 
