@@ -13,7 +13,6 @@ A full-stack luxury resort property showcase and booking platform featuring **Sa
   - [Prerequisites Checklist](#-prerequisites-checklist)
   - [Complete Setup Guide](#-complete-setup-guide-clone--run)
   - [Troubleshooting](#-troubleshooting)
-  - [Quick Setup](#-quick-setup)
 - [Project Structure](#-project-structure)
 - [Key Features](#-key-features)
 - [Features Matrix](#-features-matrix)
@@ -21,6 +20,8 @@ A full-stack luxury resort property showcase and booking platform featuring **Sa
 - [Technologies & Dependencies](#-technologies--dependencies)
 - [API Documentation](#-api-documentation)
 - [API Endpoints Summary](#-api-endpoints-summary)
+- [Data Structure](#-data-structure)
+- [Development Workflow](#-development-workflow)
 
 ---
 
