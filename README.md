@@ -43,15 +43,16 @@ A full-stack luxury resort property showcase and booking platform featuring **Sa
 
 ### Core Features:
 ✅ Luxury property detail showcase with dynamic sections
-✅ Date range picker for booking availability
-✅ Interactive Google Maps integration
-✅ Property comparison & filtering
-✅ Reviews and ratings system
-✅ Hotel policies and FAQs
-✅ Newsletter subscription
-✅ Nearby resorts discovery with sorting
-✅ Completely responsive (mobile-first)
-✅ Zero JavaScript framework dependencies
+✅ Date range picker (Hotel Datepicker) for booking availability
+✅ Interactive Google Maps with location & nearby resorts
+✅ Nearby resorts discovery with sorting (price, popularity, ratings)
+✅ Favorites/Wishlist functionality with localStorage persistence
+✅ Reviews and ratings system with guest testimonials
+✅ Hotel policies, FAQs, and expandable sections
+✅ Newsletter subscription and contact forms
+✅ Image gallery with modal preview and thumbnails
+✅ Completely responsive (mobile-first design)
+✅ Zero JavaScript framework dependencies (vanilla JS)
 
 ---
 
@@ -230,15 +231,16 @@ Resort-Booking/
 - **Responsive Layout:** Two-column design with sticky booking sidebar
 
 ### 📅 Advanced Booking System
-- **Date Range Picker:** Select check-in and check-out dates with visual calendar
-- **Real-time Pricing:** Dynamic price calculation based on selected dates
+- **Hotel Datepicker:** Select check-in and check-out dates with visual calendar, keyboard navigation
+- **Real-time Pricing:** Dynamic price calculation based on selected dates and stay duration
 - **Availability Tracking:** Check availability for specific date ranges
 - **Quick Actions:** Phone CTA, booking specialist contact, hot deal badge
 
 ### 🗺️ Interactive Maps
-- **Google Maps Integration:** Property location map with markers
-- **Nearby Resorts:** Discover 6 nearby properties with details
-- **Proximity Information:** Airport distances and travel times
+- **Google Maps Integration:** Property location map with drop-animation markers
+- **Nearby Resorts Discovery:** Browse 6 nearby properties with sorting (most-popular, highest-price, lowest-price)
+- **Map-Card Synchronization:** Hover on cards to highlight markers, click markers to highlight cards
+- **Proximity Information:** Distances and locations for nearby properties
 
 ### 🎨 Rich Content Sections
 - **About:** Property description with 18+ amenity icons
@@ -255,8 +257,9 @@ Resort-Booking/
 
 ### 🔍 Property Discovery
 - **Sort Options:** Filter nearby resorts by most-popular, highest-price, lowest-price
-- **Property Cards:** Image, name, price, bedrooms, bathrooms, rating
-- **Pagination:** Load limited properties with configurable limits
+- **Property Cards:** Image, name, price, bedrooms, bathrooms, rating with quick details
+- **Favorites/Wishlist:** Save favorite properties with heart icon, persists via localStorage
+- **Responsive Loading:** 6 properties on desktop, 4 on mobile devices
 
 ### 📱 Responsive Design
 - **Mobile-First:** Optimized for all screen sizes
@@ -599,273 +602,3 @@ curl http://localhost:5000/api/images | jq .
 # Test in browser DevTools
 fetch('/api/get-property').then(r => r.json()).then(console.log)
 ```
-
----
-
-## 🎨 Design System
-
-### CSS Variables (`:root`)
-
-All design tokens are centralized in CSS custom properties for consistency, maintainability, and easy theming:
-
-```css
-:root {
-  /* Colors - Background & Surface */
-  --bg: #c9f2f5;                    /* Page background (light cyan) */
-  --surface: #ffffff;               /* Card background (white) */
-  --card-border: 1px solid #ececec; /* Card border */
-  
-  /* Colors - Text */
-  --text: #1f1f1f;                  /* Primary text (dark gray) */
-  --text-secondary: #444;           /* Secondary text (medium gray) */
-  --text-tertiary: #666;            /* Tertiary text (light gray) */
-  --muted: #5a5a5a;                 /* Muted text (medium-light gray) */
-  
-  /* Colors - Brand & Accent */
-  --brand: #00363a;                 /* Primary brand (dark teal) */
-  --brand-2: #003f45;               /* Secondary brand (darker teal) */
-  --accent: #ff9800;                /* Accent (orange) - buttons, badges */
-  
-  /* Styling */
-  --line: #e6e6e6;                  /* Borders and dividers */
-  --radius: 16px;                   /* Large border radius */
-  --radius-sm: 12px;                /* Small border radius */
-  
-  /* Typography */
-  --font-body: 'Inter', sans-serif;
-  --font-heading: 'Playfair Display', serif;
-  --fw-regular: 400;
-  --fw-medium: 500;
-  --fw-semibold: 600;
-  --fw-bold: 700;
-}
-```
-
-### Typography System
-
-**Body Font:** `Inter` (sans-serif)
-- Clean, modern, highly readable
-- Weights: Regular (400), Medium (500), Semibold (600), Bold (700)
-- Uses: Body text, UI labels, metadata
-
-**Heading Font:** `Playfair Display` (serif)
-- Elegant, luxury, distinctive
-- Weights: Medium (500), Semibold (600), Bold (700)
-- Uses: Page titles, section headings, highlights
-
-### Color Palette
-
-```
-Primary:    #00363a (Dark Teal)   — Brand & buttons
-Secondary:  #003f45 (Darker Teal) — Hover states, depth
-Accent:     #ff9800 (Orange)      — CTAs, badges, highlights
-Background: #c9f2f5 (Light Cyan)  — Page background
-Surface:    #ffffff (White)       — Cards, containers
-Text:       #1f1f1f (Dark Gray)   — Primary content
-Muted:      #5a5a5a (Medium Gray) — Secondary content
-Border:     #e6e6e6 (Light Gray)  — Lines & dividers
-```
-
-### Responsive Breakpoints
-
-```css
-/* Mobile-first approach */
-/* Default: Mobile (< 640px) */
-@media (min-width: 640px)  { /* Tablet */ }
-@media (min-width: 1024px) { /* Desktop */ }
-@media (min-width: 1280px) { /* Large desktop */ }
-```
-
----
-
-## 🌐 Browser Support
-
-| Browser | Minimum Version | Status |
-|---------|-----------------|--------|
-| Chrome | 90+ | ✅ Full Support |
-| Firefox | 88+ | ✅ Full Support |
-| Safari | 14+ | ✅ Full Support |
-| Edge | 90+ | ✅ Full Support |
-| Opera | 76+ | ✅ Full Support |
-
-**Note:** IE11 is not supported due to use of modern JavaScript features (ES6+, CSS Grid, CSS Variables).
-
----
-
-## ⚡ Performance & SEO
-
-### Performance Optimizations
-
-✅ **Zero Framework Overhead:** Vanilla JavaScript with no framework bloat
-✅ **Lazy Loading:** Images load on-demand to reduce initial page load
-✅ **CSS Optimization:** Minimal CSS, critical path optimization
-✅ **Asset Compression:** Images optimized and compressed
-✅ **Caching Strategy:** Browser caching headers configured
-✅ **Minimal Dependencies:** Only essential packages included
-
-### SEO Best Practices
-
-✅ **Semantic HTML:** Proper heading hierarchy, `<article>`, `<section>`, `<nav>`
-✅ **Meta Tags:** Comprehensive title, description, keywords
-✅ **Open Graph Tags:** Social media sharing optimization
-✅ **Structured Data:** Schema.org markup for rich snippets
-✅ **Mobile-Responsive:** Mobile-first design, optimized viewport
-✅ **Performance:** Optimized for Core Web Vitals (LCP, FID, CLS)
-✅ **Accessibility:** ARIA labels, keyboard navigation, alt text
-
-### Lighthouse Scores Target
-
-| Metric | Target |
-|--------|--------|
-| Performance | 90+ |
-| Accessibility | 95+ |
-| Best Practices | 95+ |
-| SEO | 100 |
-
----
-
-## 🔮 Future Enhancements
-
-### Planned Features
-
-- [ ] **User Authentication:** Login/signup for personalized bookings
-- [ ] **Booking Management:** User account with booking history
-- [ ] **Payment Integration:** Stripe/PayPal for online payments
-- [ ] **Email Notifications:** Booking confirmations and updates
-- [ ] **Admin Dashboard:** Manage properties, images, and data
-- [ ] **Multi-Language Support:** Internationalization (i18n)
-- [ ] **Progressive Web App:** PWA support with offline capabilities
-- [ ] **Advanced Filtering:** Filter by amenities, price range, rating
-- [ ] **Review System:** User-submitted reviews and ratings
-- [ ] **Real-Time Availability:** Live calendar sync with booking system
-- [ ] **CRM Integration:** Guest management and communication
-- [ ] **Analytics Dashboard:** Visitor tracking and conversion metrics
-
-### Performance Improvements
-
-- [ ] Service Worker for offline support
-- [ ] Image CDN integration
-- [ ] Database migration (from JSON to MongoDB/PostgreSQL)
-- [ ] Rate limiting and API security enhancements
-- [ ] WebP image format support
-
----
-
-## 📝 License
-
-This project is licensed under the ISC License — see the `package.json` file for details.
-
----
-
-## 👤 Author
-
-**Sadik MR**
-- GitHub: [@SadikMR](https://github.com/SadikMR)
-- Repository: [Resort-Booking](https://github.com/SadikMR/Resort-Booking)
-
----
-
-## 💬 Support & Feedback
-
-Have questions or feedback? Feel free to:
-- 📧 Email: [your-email@example.com]
-- 🐛 Report bugs: [GitHub Issues](https://github.com/SadikMR/Resort-Booking/issues)
-- 💡 Suggest features: [GitHub Discussions](https://github.com/SadikMR/Resort-Booking/discussions)
-
----
-
-## 📚 Additional Resources
-
-- [Express.js Documentation](https://expressjs.com/)
-- [Google Maps API](https://developers.google.com/maps)
-- [MDN Web Docs](https://developer.mozilla.org/)
-- [Web Accessibility Guidelines](https://www.w3.org/WAI/)
-- [Core Web Vitals](https://web.dev/vitals/)
-- **Icons**: Bootstrap Icons v1.11.3 (CDN)
-
-### Layout Approach
-
-- **CSS Grid**: Main content + sidebar layout (`content-with-rail`), gallery, activity cards, nearby resorts
-- **Flexbox**: Header, breadcrumbs, badges, meta rows, banner CTAs
-- **Sticky positioning**: Sidebar booking card and section tab navigation
-
----
-
-## 📱 Responsive Breakpoints
-
-The page is fully responsive with three breakpoints using a **desktop-first** approach:
-
-| Breakpoint     | Target         | Key Changes                                                      |
-|----------------|----------------|------------------------------------------------------------------|
-| `≤ 1024px`     | Tablet         | Single-column layout, sidebar moves to top, grids collapse to 2-col |
-| `≤ 768px`      | Mobile         | Smaller header, brand text hidden, banner stacks, 1-col grids    |
-| `≤ 480px`      | Small Mobile   | Tighter padding, smaller fonts, compact navigation               |
-
-### Tablet (≤ 1024px)
-- Content grid switches from 2-column to single column
-- Sidebar loses sticky position, moves above content
-- Gallery thumbnails become 4 across
-- Nearby/location grids stack vertically
-
-### Mobile (≤ 768px)
-- Header height reduces, brand subtitle hides
-- Navigation links collapse (Groups & Weddings hidden)
-- Phone number hidden from header
-- Banner switches to vertical stack
-- All grids become single column
-- Footer stacks vertically
-
-### Small Mobile (≤ 480px)
-- Content cards get tighter padding
-- Headings and meta text shrink further
-- Brand text reduces to 1.3rem
-
----
-
-## ✅ Best Practices Followed
-
-### HTML Best Practices
-- ✅ **Semantic elements**: `<header>`, `<main>`, `<footer>`, `<nav>`, `<section>`, `<article>`, `<details>`, `<summary>`
-- ✅ **Single `<h1>`** with sequential heading hierarchy (h1 → h2 → h3)
-- ✅ **Accessible markup**: `aria-label`, `aria-labelledby`, `aria-current="page"`, `<label for>`
-- ✅ **Alt text** on all images
-- ✅ **No inline CSS** — all styles in external stylesheet
-- ✅ **No tables** for layout
-- ✅ **Semantic breadcrumbs**: `<nav>` + `<ol>` with CSS-generated separators
-- ✅ **Viewport meta tag** for mobile optimization
-- ✅ **Descriptive class names** (BEM-inspired: `.content-card`, `.booking-card`, `.activity-grid`)
-
-### CSS Best Practices
-- ✅ **External CSS** — core styles (`css/styles.css`) plus picker styles (`css/hotel-datepicker.css`)
-- ✅ **Classes only** — no `#id` selectors for styling
-- ✅ **CSS Variables** — all theme colors, spacing, and radii in `:root`
-- ✅ **DRY** — reusable variables replace repeated values (`--radius-sm`, `--card-border`, `--text-secondary`)
-- ✅ **`box-sizing: border-box`** — applied globally
-- ✅ **Flexbox & Grid** — modern layout (no floats)
-- ✅ **Consistent units** — `rem` for fonts/spacing, `px` for borders, `%`/`vw` for layout
-- ✅ **Shorthand properties** used where appropriate
-- ✅ **Responsive media queries** — 3 breakpoints (1024px, 768px, 480px)
-- ✅ **No `!important`** used anywhere
-
-### SEO Best Practices
-- ✅ `<title>` tag with descriptive page title
-- ✅ `<meta name="description">` with compelling summary
-- ✅ `<meta name="keywords">` with relevant terms
-- ✅ `lang="en"` attribute on `<html>`
-- ✅ Proper heading hierarchy for crawlers
-- ✅ Semantic landmarks for screen readers and search engines
-- ✅ Descriptive `alt` attributes on all images
-- ✅ `loading="lazy"` on map iframes for performance
-
----
-
-## 🖼️ External Resources
-
-| Resource           | URL                                                                 |
-|--------------------|---------------------------------------------------------------------|
-| Google Fonts       | `fonts.googleapis.com` (Inter, Playfair Display)                    |
-| Bootstrap Icons    | `cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3`                      |
-| Unsplash Images    | `images.unsplash.com` (resort/hotel stock photos)                   |
-| OpenStreetMap      | `openstreetmap.org/export/embed.html` (location maps)              |
-
-> All external resources are loaded via CDN. No local assets required.
