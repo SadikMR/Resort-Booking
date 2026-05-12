@@ -104,15 +104,14 @@ Open the `.env` file with your text editor and add this exact content:
 
 ```env
 PORT=5000
-NODE_ENV=development
-GOOGLE_MAPS_API_KEY=
+GOOGLE_MAPS_API_KEY=<YOUR_API_KEY_HERE>
 ```
 
 ✅ **Save the file**
 
 #### **Step 2C: Optional - Add Google Maps API Key Later**
 
-> If you don't have the Google Map API Key, App works perfectly! It wouldn't just show the maps. To enable maps later, get an API key from [Google Cloud Console](https://console.cloud.google.com/), then add it to `.env`:
+> If you don't have the Google Map API Key, App works perfectly! It wouldn't just show the maps. To enable maps later, get an API key from [Google Maps Documentation](https://developers.google.com/maps/documentation/javascript/demo-key), then add it to `.env`:
 
 Restart the server. Done! ✅
 
@@ -144,27 +143,6 @@ Visit: `http://localhost:5000`
 | **"Port 5000 already in use"** | Change `PORT` in `.env` to 5001 or 5002 |
 | **"Cannot find module"** | Run `npm install` again |
 | **Server won't start** | Check `.env` file exists in project root |
-
----
-
-## 📝 Quick Setup
-
-**Clone, configure, install, and run in 4 commands:**
-
-```bash
-git clone https://github.com/SadikMR/Resort-Booking.git && cd Resort-Booking && touch .env && npm install && npm start
-```
-
-Create `.env` file with:
-```env
-PORT=5000
-NODE_ENV=development
-GOOGLE_MAPS_API_KEY=
-```
-
-**Don't have a Google Maps API Key?** Get a free demo key from [Google Maps Documentation](https://developers.google.com/maps/documentation/javascript/demo-key) and add it to `GOOGLE_MAPS_API_KEY=`. That's it.
-
-Visit: `http://localhost:5000`
 
 ---
 
@@ -201,21 +179,19 @@ Resort-Booking/
     │   ├── about-toggle.js         # About section expand/collapse
     │   ├── gallery-modal.js        # Image gallery modal interactions
     │   │
-    │   ├── 📂 booking/             # Booking functionality
-    │   │   └── booking-datepicker.js   # Date picker initialization
+    │   ├── 📂 booking/             # Booking & date picker functionality
+    │   │   ├── booking-datepicker.js   # Date picker initialization
+    │   │   ├── hotel-datepicker.js    # Date picker component
+    │   │   └── fecha.js               # Date formatting utility
     │   │
     │   ├── 📂 carousel/            # Carousel components
     │   │   ├── highlights-carousel.js  # Resort highlights slider
     │   │   └── activities-carousel.js  # Activities slider
     │   │
-    │   ├── 📂 hotel-datepicker/    # Date picker library
-    │   │   ├── fecha.js            # Date formatting utility
-    │   │   └── hotel-datepicker.js # Main datepicker component
-    │   │
     │   ├── 📂 maps/                # Map integration
     │   │   ├── google-maps-loader.js    # Google Maps API loader
     │   │   ├── location-map.js         # Main property location map
-    │   │   ├── nearby-map.js           # Nearby resorts map
+    │   │   ├── nearby-map.js           # Nearby resorts map (dynamic sorting)
     │   │   └── map-card-sync.js        # Map & card interaction sync
     │   │
     │   └── 📂 nearby-resort/       # Nearby properties functionality
@@ -404,13 +380,13 @@ The backend provides RESTful API endpoints for data management and configuration
 
 ### Base URL
 ```
-http://localhost:5000/api
+http://localhost:5000
 ```
 
 ### Endpoints
 
 #### 1. Get Properties
-**Endpoint:** `GET /api/get-property`
+**Endpoint:** `GET /get-property`
 
 **Query Parameters:**
 - `sort` (optional): `'most-popular'` | `'highest-price'` | `'lowest-price'` (default: `'most-popular'`)
@@ -419,13 +395,13 @@ http://localhost:5000/api
 **Example Requests:**
 ```bash
 # Get 6 most popular properties
-GET /api/get-property
+GET /get-property
 
-# Get 10 highest price properties
-GET /api/get-property?sort=highest-price&limit=10
+# Get 6 highest price properties
+GET /get-property?sort=highest-price&limit=6
 
-# Get 5 lowest price properties
-GET /api/get-property?sort=lowest-price&limit=5
+# Get 4 lowest price properties
+GET /get-property?sort=lowest-price&limit=4
 ```
 
 **Response Format:**
@@ -455,7 +431,7 @@ GET /api/get-property?sort=lowest-price&limit=5
 ```
 
 #### 2. Get Google Maps API Key
-**Endpoint:** `GET /api/config/google-maps-key`
+**Endpoint:** `GET /config/google-maps-key`
 
 **Response:**
 ```json
@@ -465,7 +441,7 @@ GET /api/get-property?sort=lowest-price&limit=5
 ```
 
 #### 3. Get Images
-**Endpoint:** `GET /api/images`
+**Endpoint:** `GET /images`
 
 **Response:**
 ```json
@@ -504,25 +480,25 @@ All endpoints return standard error responses:
 
 | Method | Endpoint | Purpose | Params |
 |--------|----------|---------|--------|
-| **GET** | `/api/get-property` | Fetch properties with sorting/filtering | `sort`, `limit` |
-| **GET** | `/api/config/google-maps-key` | Get Google Maps API key config | None |
-| **GET** | `/api/images` | Fetch image gallery data | None |
+| **GET** | `/get-property` | Fetch properties with sorting/filtering | `sort`, `limit` |
+| **GET** | `/config/google-maps-key` | Get Google Maps API key config | None |
+| **GET** | `/images` | Fetch image gallery data | None |
 
 ### Quick API Usage Examples
 
 **Get nearby properties sorted by price:**
 ```bash
-curl http://localhost:5000/api/get-property?sort=lowest-price&limit=6
+curl http://localhost:5000/get-property?sort=lowest-price&limit=6
 ```
 
 **Get most popular properties:**
 ```bash
-curl http://localhost:5000/api/get-property?sort=most-popular&limit=10
+curl http://localhost:5000/get-property?sort=most-popular&limit=4
 ```
 
 **Fetch images:**
 ```bash
-curl http://localhost:5000/api/images
+curl http://localhost:5000/images
 ```
 
 ---
@@ -880,23 +856,6 @@ The page is fully responsive with three breakpoints using a **desktop-first** ap
 - ✅ Semantic landmarks for screen readers and search engines
 - ✅ Descriptive `alt` attributes on all images
 - ✅ `loading="lazy"` on map iframes for performance
-
----
-
-## 🚀 How to Run
-
-1. Clone or download the repository
-2. Open `index.html` directly in any modern browser
-
-```bash
-# Option 1: Direct file open
-open index.html
-
-# Option 2: Local server (optional)
-npx serve .
-```
-
-No build step, no dependencies to install — it's pure HTML + CSS.
 
 ---
 
