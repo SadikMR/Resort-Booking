@@ -7,9 +7,10 @@ async function initLocationMap() {
     const mapElement = document.getElementById('location-map');
     if (!mapElement) return;
 
+    // UPDATED: Center coordinates now match the resort
     const mapOptions = {
       zoom: 14,
-      center: { lat: 18.474, lng: -68.365 },
+      center: { lat: 18.4728065, lng: -68.3997176 }, 
       mapTypeId: 'roadmap',
     };
 
@@ -17,7 +18,7 @@ async function initLocationMap() {
 
     // Add marker for resort
     const marker = new google.maps.Marker({
-      position: { lat: 18.474, lng: -68.365 },
+      position: { lat: 18.4728065, lng: -68.3997176 },
       map: locationMap,
       title: 'Sanctuary Cap Cana Resort',
       animation: google.maps.Animation.DROP,
