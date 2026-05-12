@@ -12,7 +12,7 @@
 
 (function () {
   const IMAGE_SERVICE_URL = 'https://beta.imgservice.rentbyowner.com/640x300/';
-  const API_BASE = '/api/get-property';
+  const API_BASE = '/get-property';
 
   // ===== Initialization Check =====
   // Ensure favorites module is loaded

@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client')));
 
 // Routes
-app.use('/api', imageRoutes);
+app.use('/', imageRoutes);
 
 // Serve index.html for all other routes (SPA fallback)
 app.use((req, res) => {

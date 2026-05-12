@@ -2,7 +2,7 @@
 async function loadGoogleMapsAPI() {
   try {
     // Fetch API key from server
-    const response = await fetch('/api/config/google-maps-key');
+    const response = await fetch('/config/google-maps-key');
     const data = await response.json();
     const apiKey = data.apiKey;
 

@@ -31,7 +31,7 @@ async function initNearbyMap() {
     // Fetch nearby properties from API with responsive limit
     try {
       const limit = getResponsiveLimit();
-      const response = await fetch(`/api/get-property?sort=most-popular&limit=${limit}`);
+      const response = await fetch(`/get-property?sort=most-popular&limit=${limit}`);
       const data = await response.json();
       
       console.log(`Fetched ${limit} properties for map`);
